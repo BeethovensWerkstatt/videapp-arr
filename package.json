@@ -31,7 +31,7 @@
   "homepage": "https://github.com/BeethovensWerkstatt/module2#readme",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service lint && vue-cli-service build && gulp xar-structure && gulp data && gulp buildXar",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
