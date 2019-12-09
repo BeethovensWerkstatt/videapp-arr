@@ -3,11 +3,11 @@
 # 1. set up the build environment and build the expath-package
 # 2. run the eXist-db
 #########################
-FROM node:lts as builder
+FROM node:8 as builder
 
 WORKDIR /app
 
-COPY . .
+COPY . /app
 RUN npm install \
   && npm run build
 
@@ -17,4 +17,4 @@ RUN npm install \
 #########################
 FROM nginx:alpine
 LABEL maintainer="Johannes Kepper for Beethovens Werkstatt"
-COPY --from=builder /app/dist/* /usr/share/nginx/html
+COPY --from=builder /app/dist/ /usr/share/nginx/html/

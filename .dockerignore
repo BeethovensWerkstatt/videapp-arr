@@ -1,4 +1,9 @@
 dist
 build
 node_modules
-
+.git
+data
+remove-source
+source
+helpers
+exist-app-template
