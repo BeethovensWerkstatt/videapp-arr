@@ -24,6 +24,10 @@ const buildRequest = (comparison, methodLink, mdiv, transpose) => {
   return 'data/' + comparison + '/mdiv/' + mdiv.n + '/transpose/' + transpose + '/' + methodLink + '.xml' + staffParam
 }
 
+const buildIntroRequest = (id) => {
+  return 'data/' + id + '/intro.html'
+}
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -40,7 +44,7 @@ export default new Vuex.Store({
     currentPage: 1,
     currentMaxPage: 10,
     measure: null,
-    introVisible: false,
+    currentIntro: null,
     loading: [],
     networkErrorMsg: null,
     navigationVisible: true, // this is the sidebar with work and mode selection
@@ -89,10 +93,10 @@ export default new Vuex.Store({
       state.currentPage = 1 // reset to page 1 when changing mode
     },
     DISPLAY_INTRO (state, id) {
-      state.introVisible = true
+      state.currentIntro = id
     },
     HIDE_INTRO (state) {
-      state.introVisible = false
+      state.currentIntro = null
     },
     SHOW_NAVIGATION (state) {
       state.navigationVisible = true
@@ -361,6 +365,43 @@ export default new Vuex.Store({
         }
       })
     },
+    fetchIntro ({ commit, state }) {
+      let id = state.currentIntro
+
+      if (id === null) {
+        return null
+      }
+      let request = buildIntroRequest(id)
+
+      // console.log('fetching has started')
+      return new Promise(resolve => {
+        if (typeof state.cachedRequests[request] !== 'undefined') {
+          // resource has been loaded already, no action required
+          // console.log('resource has been loaded already, no action required')
+          resolve()
+        } else {
+          // resource needs to be loaded
+          // console.log('// resource needs to be loaded')
+          commit('START_LOADING', request)
+          fetch(api + request)
+            .then(response => {
+              if (!response.ok) {
+                throw Error(response.statusText)
+              }
+              return response.text()
+            })
+            .then(mei => {
+              commit('CACHE_REQUEST', { request, mei })
+              commit('STOP_LOADING', request)
+              resolve()
+            })
+            .catch(error => {
+              commit('SHOW_NETWORK_ERROR', error)
+              resolve()
+            })
+        }
+      })
+    },
     activateComparison ({ commit }, id) {
       // todo: check if comparison with that id is available
       commit('ACTIVATE_COMPARISON', id)
@@ -379,7 +420,7 @@ export default new Vuex.Store({
     },
     displayIntro ({ commit }, id) {
       // todo: load HTML snippet from server
-      commit('DISPLAY_INTRO')
+      commit('DISPLAY_INTRO', id)
     },
     hideIntro ({ commit }) {
       commit('HIDE_INTRO')
@@ -577,9 +618,6 @@ export default new Vuex.Store({
     proposedTranspose: state => {
       return state.proposedTranspose
     },
-    introVisible: state => {
-      return state.introVisible
-    },
     navigationVisible: state => {
       return state.navigationVisible
     },
@@ -628,6 +666,25 @@ export default new Vuex.Store({
       }
 
       let request = buildRequest(state.activeComparison, state.modes[state.activeMode].apiLink, movement, state.transpose)
+
+      if (typeof state.cachedRequests[request] === 'undefined') {
+        return null
+      }
+
+      return state.cachedRequests[request]
+    },
+    introVisible: state => {
+      return state.currentIntro !== null
+    },
+    currentIntroId: state => {
+      return state.currentIntro
+    },
+    currentIntroText: state => {
+      if (state.currentIntro === null) {
+        return null
+      }
+
+      let request = buildIntroRequest(state.currentIntro)
 
       if (typeof state.cachedRequests[request] === 'undefined') {
         return null

@@ -2,9 +2,7 @@
 
   <div class="home">
 
-    <div v-if="introVisible">
-      <h1>show Intro</h1>
-    </div>
+    <Intro v-if="introVisible"/>
     <div v-else id="fullBox">
       <div id="navigationBox">
         <ComparisonSelection/>
@@ -40,6 +38,7 @@ import NavigationTop from '@/components/NavigationTop.vue'
 import SearchPane from '@/components/SearchPane.vue'
 import StaffSelectionModal from '@/components/StaffSelectionModal.vue'
 import TransposeModal from '@/components/TransposeModal.vue'
+import Intro from '@/components/Intro.vue'
 
 export default {
   name: 'home',
@@ -50,7 +49,8 @@ export default {
     NavigationTop,
     SearchPane,
     StaffSelectionModal,
-    TransposeModal
+    TransposeModal,
+    Intro
   },
   computed: {
     introVisible: function() {

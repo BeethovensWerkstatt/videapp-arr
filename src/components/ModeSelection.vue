@@ -68,7 +68,7 @@ ul.navigationList {
                     &.active {
 
                         font-weight: 500;
-                        background-color: #a7c7f2;
+                        background-color: rgba(85, 149, 217, 0.2);
                         /*&:before {
                             position: absolute;
                             left: .2em;

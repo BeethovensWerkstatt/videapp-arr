@@ -5,7 +5,7 @@
     <div class="comparisonContainer" v-for="comparison in comparisons" v-bind="comparison">
 
       <div class="comparisonDetails" v-bind:class="{active: (comparison.id === activeComparisonId)}" v-on:click="activateComparison(comparison.id)">
-        <div class="additionalInfo s-circle float-right" v-on:click="displayIntro(comparison.id)">i</div>
+        <button class="btn btn-action btn-primary btn-sm additionalInfo" v-on:click.stop="displayIntro(comparison.id)"><i class="fas fa-info"></i></button>
         <div class="title">{{comparison.title}}</div>
         <div class="subtitle">{{comparison.target}}</div>
       </div>
@@ -62,20 +62,24 @@ export default {
 
     .comparisonDetails {
       border: .5px solid $borderColor;
-      border-radius: 8px;
+      border-radius: 3px;
       background-color: #e5e5e5;
       padding: .3rem;
       cursor: pointer;
 
 
       .additionalInfo {
-        background-color: #0864c3;
-        color: #ffffff;
-        width: 1rem;
-        height: 1rem;
-        text-align: center;
-        font-style: italic;
-        font-weight:700;
+        float: right;
+        transform: scale(.7);
+        position: relative;
+        top: -.2rem;
+        right: -.2rem;
+
+        .fas {
+          font-size: .8rem;
+          top: .1rem;
+          position: relative;
+        }
       }
 
       .title {
@@ -88,7 +92,7 @@ export default {
       }
 
       &.active {
-        background-color: #a7c7f2;
+        background-color: rgba(85, 149, 217, 0.2);
         font-weight: 700;
       }
     }
@@ -106,11 +110,11 @@ export default {
           background-color: #f5f5f5;
 
           &:hover {
-            background-color: #a7c7f2;
+            background-color: rgba(85, 149, 217, 0.2);
           }
 
           &.active {
-            background-color: #a7c7f2;
+            background-color: rgba(85, 149, 217, 0.2);
             font-weight: 700;
           }
 
