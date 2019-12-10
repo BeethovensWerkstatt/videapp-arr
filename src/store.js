@@ -10,6 +10,8 @@ const environment = 'live' // 'local' or 'live'
 // const api = 'http://localhost:8080/exist/apps/bw-module2/'
 
 const api = (environment === 'local') ? 'http://localhost:8080/exist/apps/bw-module2/' : 'https://dev.beethovens-werkstatt.de/'
+const verovioMaxZoom = 200
+const verovioMinZoom = 10
 
 const buildRequest = (comparison, methodLink, mdiv, transpose) => {
   let disabledStavesWork1 = []
@@ -34,7 +36,7 @@ export default new Vuex.Store({
     modes: modeConfiguration,
     activeMode: null,
     transpose: 'none',
-    zoom: 1,
+    zoom: 35,
     currentPage: 1,
     currentMaxPage: 10,
     measure: null,
@@ -100,6 +102,9 @@ export default new Vuex.Store({
     },
     SET_PAGE (state, n) {
       state.currentPage = n
+    },
+    SET_ZOOM (state, num) {
+      state.zoom = num
     },
     SET_MAX_PAGE (state, n) {
       state.currentMaxPage = n
@@ -390,7 +395,7 @@ export default new Vuex.Store({
       if (!isNaN(num) && num >= 1 && num <= state.currentMaxPage) {
         commit('SET_PAGE', num)
       } else if (!isNaN(num) && num > state.currentMaxPage) {
-        // if the requested page numer is too high, load last page instead
+        // if the requested page number is too high, load last page instead
         commit('SET_PAGE', state.currentMaxPage)
       }
     },
@@ -408,6 +413,30 @@ export default new Vuex.Store({
     },
     setMaxPage ({ commit }, n) {
       commit('SET_MAX_PAGE', n)
+    },
+    setZoom ({ commit, state }, n) {
+      let num = parseInt(n,10)
+      if (!isNaN(num) && num >= verovioMinZoom && num <= verovioMaxZoom) {
+        commit('SET_ZOOM', num)
+      } else if (!isNaN(num) && num > verovioMaxZoom) {
+        // if the requested zoom is too high, load max zoom instead
+        commit('SET_ZOOM', verovioMaxZoom)
+      } else if (!isNaN(num) && num < verovioMinZoom) {
+        // if the requested zoom is too small, load min zoom instead
+        commit('SET_ZOOM', verovioMinZoom)
+      }
+    },
+    decreaseZoom ({ commit, state }) {
+      let num = state.zoom - 10
+      if (num >= verovioMinZoom && num <= verovioMaxZoom) {
+        commit('SET_ZOOM', num)
+      }
+    },
+    increaseZoom ({ commit, state }) {
+      let num = state.zoom + 10
+      if (num >= verovioMinZoom && num <= verovioMaxZoom) {
+        commit('SET_ZOOM', num)
+      }
     },
     setTranspose ({ commit }, transpose) {
       commit('SET_TRANSPOSE', transpose)
@@ -556,6 +585,9 @@ export default new Vuex.Store({
     },
     currentPage: state => {
       return state.currentPage
+    },
+    currentZoom: state => {
+      return state.zoom
     },
     currentRequest: state => {
       if (state.activeComparison === null) {

@@ -32,7 +32,7 @@ export default {
     this.setOptions()
 
     unwatch = this.$store.watch(
-      (state, getters) => ({ request: getters.currentRequest, page: getters.currentPage, dataAvailable: (getters.currentMEI !== null)}),
+      (state, getters) => ({ request: getters.currentRequest, page: getters.currentPage, zoom: getters.currentZoom, dataAvailable: (getters.currentMEI !== null)}),
       (newState, oldState) => {
         // console.log(`Updating from ${oldState.request} to ${newState.request}`);
         if (newState.request !== oldState.request) {
@@ -56,6 +56,13 @@ export default {
           // make verovio render the requested page
           this.renderPage(newState.page)
         }
+        //console.log('me here?')
+        if (newState.zoom !== oldState.zoom) {
+          // make verovio change the zoom level
+          console.log('Hallo Kristin!!!')
+          
+          //this.setOptions()
+        }
 
       }
     )
@@ -72,12 +79,15 @@ export default {
   },
   methods: {
     setOptions: function () {
+
+      let zooooom = this.$store.getters.currentZoom
+
       let options = {
-        scale: zoom,
+        scale: zooooom,
         noFooter: 1, // takes out the 'rendered by Verovio' footer
 
-        pageWidth: (width - 20) * 100 / zoom,
-        pageHeight: (height - 20) * 100 / zoom,
+        pageWidth: (width - 20) * 100 / zooooom,
+        pageHeight: (height - 20) * 100 / zooooom,
         adjustPageHeight: true,
         spacingNonLinear: 1,
         spacingLinear: 0.05
@@ -424,6 +434,9 @@ export default {
     },
     searchSelectionActive: function() {
       return this.$store.getters.searchSelectionActive
+    },
+    currentZoom: function() {
+      return this.$store.getters.currentZoom
     }
   }
 }

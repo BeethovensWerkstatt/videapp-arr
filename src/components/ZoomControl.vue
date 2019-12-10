@@ -1,7 +1,7 @@
 <template>
     <span id="zoomControl" class="input-group">
       <button class="btn btn-primary btn-sm btn-action input-group-btn" v-on:click="decreaseZoom()"><i class="fas fa-minus"></i></button>
-      <input class="zoomnum form-input input-sm" type="text" pattern="\d+" v-model="zoomModel">
+      <input class="zoomnum form-input input-sm" type="text" pattern="\d+%" v-model="zoomModel">
       <button class="btn btn-primary btn-sm btn-action input-group-btn" v-on:click="increaseZoom()"><i class="fas fa-plus"></i></button>
     </span>
 </template>
@@ -19,10 +19,11 @@ export default {
     },
     zoomModel: {
       get () {
-        return this.$store.getters.currentZoom
+        return this.$store.getters.currentZoom + '%'
       },
       set (n) {
-        this.$store.dispatch('setZoom', n)
+        let num = parseInt(n,10)
+        this.$store.dispatch('setZoom', num)
       }
     }
   },
