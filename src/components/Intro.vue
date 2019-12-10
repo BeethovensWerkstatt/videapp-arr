@@ -36,10 +36,12 @@ export default {
         if (newState.intro !== oldState.intro) {
           let elem = document.querySelector('#introText').innerHTML = newState.intro
         }
-
-
       }
     )
+    let text = this.$store.getters.currentIntroText
+    if (text !== null) {
+      let elem = document.querySelector('#introText').innerHTML = text
+    }
   },
   beforeDestroy () {
     try {
@@ -49,12 +51,7 @@ export default {
     }
   },
   computed: {
-    currentIntroText: function () {
-      return this.$store.getters.currentIntroText
-    },
-    currentIntroId: function () {
-      return this.$store.getters.currentIntroId
-    }
+    
   },
   methods: {
     hideIntro: function() {
