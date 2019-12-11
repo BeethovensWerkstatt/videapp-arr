@@ -60,7 +60,7 @@ export default {
         if (newState.zoom !== oldState.zoom) {
           // make verovio change the zoom level
           console.log('Hallo Kristin!!!')
-          
+
           //this.setOptions()
         }
 
@@ -84,8 +84,8 @@ export default {
 
       let options = {
         scale: zooooom,
-        noFooter: 1, // takes out the 'rendered by Verovio' footer
-
+        footer: 'none', // takes out the 'rendered by Verovio' footer
+        header: 'none', // takes out the work label at the top
         pageWidth: (width - 20) * 100 / zooooom,
         pageHeight: (height - 20) * 100 / zooooom,
         adjustPageHeight: true,
