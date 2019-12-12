@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     openPageByElementID: function(id) {
-      console.log('I should open the page that holds ID ' + id)
       try {
         let page = this.$verovio.getPageWithElement(id);
         this.$store.dispatch('setPage', page)
@@ -112,6 +111,7 @@ export default {
       }
     },
     sunburstLoadData: function() {
+      this.sunburstRemoveData()
       let mode = this.$store.getters.activeModeId
       let mei = this.$store.getters.currentMEI
       let data = this.buildSunburstDataFromMEI(mei)
