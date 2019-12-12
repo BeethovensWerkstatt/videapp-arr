@@ -1,7 +1,7 @@
 <template>
   <header class="navbar">
       <section class="navbar-section">
-          <a id="bwLogo" href="https://beethovens-werkstatt.de" class="navbar-brand mr-2">Beethovens Werkstatt</a>
+          <a id="bwLogo" href="https://beethovens-werkstatt.de" class="navbar-brand mr-2" target="_blank">Beethovens Werkstatt</a>
       </section>
       <section class="navbar-center">
           <div>
@@ -38,6 +38,15 @@ export default {
           background-image: url('../assets/beethovensw_finale01.png');
           background-size: cover;
           height: 42px;
+      }
+
+      .appTitle {
+        font-size: 1.3rem;
+        font-weight: 100;
+
+        sub {
+          font-weight: 500;
+        }
       }
 
       #openModalBtn {

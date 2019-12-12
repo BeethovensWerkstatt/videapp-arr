@@ -56,12 +56,31 @@ export default {
           // make verovio render the requested page
           this.renderPage(newState.page)
         }
-        //console.log('me here?')
-        if (newState.zoom !== oldState.zoom) {
-          // make verovio change the zoom level
-          console.log('Hallo Kristin!!!')
 
-          //this.setOptions()
+        if (newState.zoom !== oldState.zoom && newState.dataAvailable) {
+          // make verovio change the zoom level
+          try {
+            // get ID of first measure on current page
+            let firstMeasureId = document.querySelector('#svgContainer .measure').id
+            // update Verovio options
+            this.setOptions()
+            //get new page with that measure
+            let page = this.$verovio.getPageWithElement(firstMeasureId)
+            //set new page
+            let newMaxPage = this.$verovio.getPageCount()
+            if(newMaxPage > 0) {
+              this.$store.dispatch('setMaxPage',newMaxPage)
+            }
+            if(newState.page === page) {
+              this.renderPage(page)
+            } else {
+              this.$store.dispatch('setPage',page)
+            }
+          } catch(err) {
+            console.log('error: Unable to zoom: ' + err)
+          }
+          console.log('done')
+
         }
 
       }

@@ -4,6 +4,7 @@
     <ul class="navigationList">
 
       <li class="modeBtn" v-for="mode in modes" v-bind:id="mode.id" v-bind:class="{active: (mode.id === activeModeId)}" v-on:click="activateMode(mode.id)">
+        <a class="btn btn-action btn-primary btn-sm glossaryLink" v-bind:href="getLink(mode.glossary)" target="_blank"><i class="fas fa-book"></i></a>
         {{mode.label.de}}
       </li>
     </ul>
@@ -28,7 +29,8 @@ export default {
     },
     activeModeObject: function() {
       return this.$store.getter.activeModeObject
-    }
+    },
+
   },
   methods: {
     activateMode (id) {
@@ -36,6 +38,10 @@ export default {
     },
     i18n: function(code) {
       return this.$i18n(code)
+    },
+    getLink: function(glossaryLink) {
+      let lang = this.$store.getters.language
+      return glossaryLink[lang]
     }
   }
 }
@@ -45,40 +51,46 @@ export default {
 <style scoped lang="scss">
 
 ul.navigationList {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 
-                li {
-                    padding: .3em;
-                    font-weight: 300;
-                    position: relative;
-                    cursor: pointer;
-                    border: .5px solid #666666;
-                    border-radius: 8px;
-                    background-color: #e5e5e5;
+  li {
+    margin: 0 .2rem .5rem;
+    text-align: left;
+    padding: .3em 1rem;
+    font-weight: 500;
+    position: relative;
+    cursor: pointer;
+    border: .5px solid #666666;
+    border-radius: 3px;
+    background-color: #e5e5e5;
 
-                    span.originalVersion {
-                        display: block;
-                    }
+    .glossaryLink {
+      float: right;
+      transform: scale(.7);
+      position: relative;
+      top: -.2rem;
+      right: -.2rem;
 
-                    span.targetVersion {
-                        display: block;
-                        font-size: 90%;
-                        margin-left: 1em;
-                    }
+      .fas {
+        font-size: .8rem;
+        top: .1rem;
+        position: relative;
+      }
+    }
 
-                    &.active {
+    &.active {
 
-                        font-weight: 500;
-                        background-color: rgba(85, 149, 217, 0.2);
-                        /*&:before {
-                            position: absolute;
-                            left: .2em;
-                            content: '‣'
-                        }*/
-                    }
-                  }
+      font-weight: 500;
+      background-color: rgba(85, 149, 217, 0.2);
+      /*&:before {
+          position: absolute;
+          left: .2em;
+          content: '‣'
+      }*/
+    }
+  }
 }
 
 </style>
