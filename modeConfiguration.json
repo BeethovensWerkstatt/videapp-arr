@@ -81,7 +81,7 @@
       "en":"link-en"
     },
     "options":{
-      "sunburst":true,
+      "sunburst":false,
       "zoom":true,
       "paging":false,
       "transposition":false,
