@@ -5,14 +5,14 @@
         {{i18n('colorPicker')}}
       </div>
       <div class="viewSettingItem btn-group btn-group-block colorButtons">
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 1}" v-on:click="setCurrentColor(1)"><i class="fas fa-tint color1"></i></button>
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 2}" v-on:click="setCurrentColor(2)"><i class="fas fa-tint color2"></i></button>
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 3}" v-on:click="setCurrentColor(3)"><i class="fas fa-tint color3"></i></button>
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 4}" v-on:click="setCurrentColor(4)"><i class="fas fa-tint color4"></i></button>
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 5}" v-on:click="setCurrentColor(5)"><i class="fas fa-tint color5"></i></button>
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 6}" v-on:click="setCurrentColor(6)"><i class="fas fa-tint color6"></i></button>
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 7}" v-on:click="setCurrentColor(7)"><i class="fas fa-tint color7"></i></button>
-        <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 8}" v-on:click="setCurrentColor(8)"><i class="fas fa-tint color8"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 1}" v-on:click="setCurrentColor(1)"><i class="fas fa-tint color1"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 2}" v-on:click="setCurrentColor(2)"><i class="fas fa-tint color2"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 3}" v-on:click="setCurrentColor(3)"><i class="fas fa-tint color3"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 4}" v-on:click="setCurrentColor(4)"><i class="fas fa-tint color4"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 5}" v-on:click="setCurrentColor(5)"><i class="fas fa-tint color5"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 6}" v-on:click="setCurrentColor(6)"><i class="fas fa-tint color6"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 7}" v-on:click="setCurrentColor(7)"><i class="fas fa-tint color7"></i></button>
+        <button class="btn btn-action btn-sm" v-bind:class="{'btn-primary': currentColor === 8}" v-on:click="setCurrentColor(8)"><i class="fas fa-tint color8"></i></button>
       </div>
 
       <!--<div class="viewSettingItem float-right">
@@ -180,44 +180,62 @@ export default {
         stroke: $color8;
       }
     }
+
+    flex: 1 1 auto;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    height: 100%;
+    overflow: hidden;
+
+    #svgContainer {
+      overflow: auto;
+    }
+
+    #viewSettings {
+      flex: 0 0 auto;
+      background-color: #f5f5f5;
+      border-bottom: .5px solid #999999;
+      padding: 7.5px 20px;
+      text-align: left;
+      font-size: .7rem;
+      height: 2.2rem;
+
+      .color1 {
+        color: $color1;
+      }
+      .color2 {
+        color: $color2;
+      }
+      .color3 {
+        color: $color3;
+      }
+      .color4 {
+        color: $color4;
+      }
+      .color5 {
+        color: $color5;
+      }
+      .color6 {
+        color: $color6;
+      }
+      .color7 {
+        color: $color7;
+      }
+      .color8 {
+        color: $color8;
+      }
+
+      .viewSettingItem {
+        display: inline-block;
+        padding: 0 .5rem;
+        margin-right: .5rem;
+      }
+    }
   }
 
-  #viewSettings {
-    flex: 0 0 auto;
-    background-color: #f5f5f5;
-    border-bottom: .5px solid #999999;
-    padding: 10px 20px;
-    text-align: left;
 
-    .color1 {
-      color: $color1;
-    }
-    .color2 {
-      color: $color2;
-    }
-    .color3 {
-      color: $color3;
-    }
-    .color4 {
-      color: $color4;
-    }
-    .color5 {
-      color: $color5;
-    }
-    .color6 {
-      color: $color6;
-    }
-    .color7 {
-      color: $color7;
-    }
-    .color8 {
-      color: $color8;
-    }
-
-    .viewSettingItem {
-      display: inline-block;
-      padding: 0 .5rem;
-      margin-right: .5rem;
-    }
-  }
 </style>

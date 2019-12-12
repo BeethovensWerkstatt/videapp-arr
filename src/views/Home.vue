@@ -81,7 +81,7 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   position: absolute;
-  top: 68.5px;
+  top: 62.5px;
   left: 0;
   right: 0;
   bottom: 0;

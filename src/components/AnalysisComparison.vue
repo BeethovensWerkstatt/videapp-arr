@@ -126,6 +126,7 @@ export default {
     padding: 10px 20px;
     text-align: left;
     font-size: .7rem;
+    height: 2.2rem;
 
     #detailedColoration {
         position: relative;
@@ -171,5 +172,21 @@ export default {
       }
     }
 
+  }
+
+  #analysisComparison {
+    flex: 1 1 auto;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    height: 100%;
+    overflow: hidden;
+
+    #svgContainer {
+      overflow: auto;
+    }
   }
 </style>
