@@ -1,6 +1,7 @@
 <template>
     <div id="navigationTop" class="navbar">
       <section class="navbar-section">
+          <SunburstButton v-if="modeObj.options.sunburst"/>
           <PageNavigation v-if="modeObj.options.paging"/>
           <ZoomControl v-if="modeObj.options.zoom"/>
           <StaffSelectionButton v-if="modeObj.options.scoreDef"/>
@@ -16,6 +17,7 @@
 
 <script>
 
+import SunburstButton from '@/components/SunburstButton.vue'
 import PageNavigation from '@/components/PageNavigation.vue'
 import ZoomControl from '@/components/ZoomControl.vue'
 import SearchButton from '@/components/SearchButton.vue'
@@ -26,6 +28,7 @@ import ColorationButton from '@/components/ColorationButton.vue'
 export default {
   name: 'NavigationTop',
   components: {
+    SunburstButton,
     PageNavigation,
     ZoomControl,
     SearchButton,

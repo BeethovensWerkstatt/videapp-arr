@@ -1,11 +1,12 @@
 <template>
   <div id="analysis">
-    <div v-if="activeModeId === 'plain'"><AnalysisPlain/></div>
-    <div v-if="activeModeId === 'eventComparison'"><AnalysisComparison/></div>
-    <div v-if="activeModeId === 'geneticComparison'"><AnalysisGenetic/></div>
-    <div v-if="activeModeId === 'melodicComparison'"><AnalysisMelodic/></div>
-    <div v-if="activeModeId === 'harmonicComparison'"><AnalysisHarmonic/></div>
-    <div v-if="activeModeId === 'eventDensity'"><AnalysisDensity/></div>
+    <SunburstPane v-if="sunburstVisible"/>
+    <AnalysisPlain v-if="activeModeId === 'plain'"/>
+    <AnalysisComparison v-if="activeModeId === 'eventComparison'"/>
+    <AnalysisGenetic v-if="activeModeId === 'geneticComparison'"/>
+    <AnalysisMelodic v-if="activeModeId === 'melodicComparison'"/>
+    <AnalysisHarmonic v-if="activeModeId === 'harmonicComparison'"/>
+    <AnalysisDensity v-if="activeModeId === 'eventDensity'"/>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import AnalysisGenetic from '@/components/AnalysisGenetic.vue'
 import AnalysisMelodic from '@/components/AnalysisMelodic.vue'
 import AnalysisDensity from '@/components/AnalysisDensity.vue'
 import AnalysisHarmonic from '@/components/AnalysisHarmonic.vue'
+import SunburstPane from '@/components/SunburstPane.vue'
 
 export default {
   name: 'Analysis',
@@ -26,11 +28,15 @@ export default {
     AnalysisGenetic,
     AnalysisMelodic,
     AnalysisDensity,
-    AnalysisHarmonic
+    AnalysisHarmonic,
+    SunburstPane
   },
   computed: {
     activeModeId: function() {
       return this.$store.getters.activeModeId
+    },
+    sunburstVisible: function() {
+      return this.$store.getters.sunburstVisible
     }
   }
 }
@@ -41,5 +47,6 @@ export default {
 #analysis {
   flex: 1 1 auto;
   overflow: auto;
+  position: relative;
 }
 </style>
