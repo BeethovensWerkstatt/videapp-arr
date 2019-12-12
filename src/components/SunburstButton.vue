@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-sm btn-action navigationTopItem" v-bind:class="{ 'btn-primary': sunburstVisible}" v-on:click="toggleSunburstPane()"><i class="fas fa-dot-circle"></i></button>
+    <button class="btn btn-sm btn-action" v-bind:class="{ 'btn-primary': sunburstVisible}" v-on:click="toggleSunburstPane()"><i class="fas fa-dot-circle"></i></button>
 </template>
 
 <script>
@@ -22,5 +22,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+  button {
+    margin-right: .8rem;
+  }
 </style>

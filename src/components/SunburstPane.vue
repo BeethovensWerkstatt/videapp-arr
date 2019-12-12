@@ -28,7 +28,7 @@ export default {
     }
 
     unwatch = this.$store.watch((state, getters) => ({
-      request: getters.currentRequest, dataAvailable: (getters.currentMEI !== null)
+      request: getters.currentRequest, dataAvailable: (getters.currentMEI !== null), mode: getters.activeModeId
     }),(newState, oldState) => {
       if (newState.request !== oldState.request) {
         // render data when already available
@@ -38,6 +38,10 @@ export default {
       }
 
       if (newState.dataAvailable && !oldState.dataAvailable) {
+        this.sunburstLoadData()
+      }
+
+      if (newState.mode !== oldState.mode) {
         this.sunburstLoadData()
       }
     })
@@ -99,7 +103,7 @@ export default {
           .outerRadius(function(d) { return Math.max(0, rScale(d.y1)); });
 
       sunburstObject.arc = arc;
-      console.log('sunburst successfully set up…')
+      //console.log('sunburst successfully set up…')
     },
     sunburstRemoveData: function() {
       try {
@@ -132,16 +136,15 @@ export default {
           .attr('d', sunburstObject.arc)
           .attr('stroke', function(d) {
 
-              if(mode === 'geneticComparison') {
-                  let h = Math.round(0 + (120 * Number(d.data.addedLevel) / (Number(d.data.removedLevel) + Number(d.data.simLevel) + Number(0.0001))));
+              if(mode === 'geneticComparison' && d.data.level === 'measure') {
+                  let h = 40;
                   let s = '80%';
                   let l = Math.round((.5 + Number(d.data.idLevel) / 2) * 100) + '%';
                   let hsl = 'hsl(' + h + ',' + s + ',' + l + ')';
 
                   return hsl;
               }
-              else if(d.data.idLevel !== 'undefined' && d.data.level === 'measure' && d.data.idLevel < 1) {
-                  //return 'rgb(' + (240 - d.data.diffLevel * 240) +',0,' + (240 - d.data.simLevel * 240) + ')';
+              else if(mode === 'eventComparison' && d.data.level === 'measure') {
 
                   let h = Math.round(240 + (120 * Number(d.data.diffLevel) / (Number(d.data.diffLevel) + Number(d.data.simLevel) + Number(0.0001))));
                   let s = '80%';
@@ -159,16 +162,15 @@ export default {
           })
           .attr('fill', function(d) {
 
-              if(mode === 'geneticComparison') {
-                  let h = Math.round(0 + (120 * Number(d.data.addedLevel) / (Number(d.data.removedLevel) + Number(d.data.simLevel) + Number(0.0001))));
+              if(mode === 'geneticComparison' && d.data.level === 'measure') {
+                  let h = 40;
                   let s = '80%';
                   let l = Math.round((.5 + Number(d.data.idLevel) / 2) * 100) + '%';
                   let hsl = 'hsl(' + h + ',' + s + ',' + l + ')';
 
                   return hsl;
               }
-              else if(d.data.idLevel !== 'undefined' && d.data.level === 'measure' && d.data.idLevel < 1) {
-                  //return 'rgb(' + (240 - d.data.diffLevel * 240) +',0,' + (240 - d.data.simLevel * 240) + ')';
+              else if(mode === 'eventComparison' && d.data.level === 'measure') {
                   let h = Math.round(240 + (120 * Number(d.data.diffLevel) / (Number(d.data.diffLevel) + Number(d.data.simLevel) + Number(0.0001))));
                   let s = '80%';
                   let l = Math.round((.5 + Number(d.data.idLevel) / 2) * 100) + '%';
@@ -197,7 +199,7 @@ export default {
           .append('title')
           .text(function(d) {
               if(d.data.level === 'measure' && typeof d.data.idLevel !== 'undefined') {
-                  return 'Measure ' + d.data.n + '\nid:' + d.data.idLevel + '\nsim:' + d.data.simLevel + '\ndiff:' + d.data.diffLevel;
+                  return 'Measure ' + d.data.n// + '\nid:' + d.data.idLevel + '\nsim:' + d.data.simLevel + '\ndiff:' + d.data.diffLevel;
               } else if(d.data.level === 'measure') {
                   return 'Measure ' + d.data.n;
               } else if(d.data.level === 'section') {
