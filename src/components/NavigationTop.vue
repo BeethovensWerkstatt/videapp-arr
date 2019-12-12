@@ -48,7 +48,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 
   div#navigationTop {
     flex: 0 0 auto;
@@ -62,6 +62,10 @@ export default {
       font-size: 1em;
       font-weight: 100;
       text-align: right;
+    }
+
+    .navigationTopItem {
+      margin-right: .8rem;
     }
 
 }

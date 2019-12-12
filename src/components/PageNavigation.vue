@@ -1,5 +1,5 @@
 <template>
-    <span id="pageNavigation" class="input-group">
+    <span id="pageNavigation" class="input-group navigationTopItem">
       <button class="btn btn-primary btn-sm btn-action input-group-btn" v-on:click="decreasePage()"><i class="fas fa-caret-left"></i></button>
       <input class="pagenum form-input input-sm" type="text" pattern="\d+" v-model="pageModel">
       <button class="btn btn-primary btn-sm btn-action input-group-btn" v-on:click="increasePage()"><i class="fas fa-caret-right"></i></button>
@@ -12,6 +12,12 @@ export default {
   name: 'PageNavigation',
   components: {
 
+  },
+  created () {
+    // window.addEventListener('keyup', this.keyboardHandler);
+  },
+  destroyed () {
+    // window.removeEventListener('keyup', this.keyboardHandler);
   },
   computed: {
     currentPage: function () {
@@ -35,6 +41,15 @@ export default {
     },
     setPage (n) {
       this.$store.dispatch('setPage', n)
+    },
+    keyboardHandler (e) {
+      if(e.key === 'ArrowLeft') {
+        this.$store.dispatch('decreasePage')
+      } else if(e.key === 'ArrowRight') {
+        this.$store.dispatch('increasePage')
+      } else {
+        console.log(e)
+      }
     }
   }
 }
