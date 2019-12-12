@@ -1,8 +1,8 @@
 <template>
     <div id="navigationTop" class="navbar">
       <section class="navbar-section">
-        <SunburstButton if="modeObj.options.sunburst"/>
-        <!--<GotoMeasureButton if="modeObj.options.sunburst"/>-->
+        <SunburstButton v-if="modeObj.options.sunburst"/>
+        <!--<GotoMeasureButton v-if="modeObj.options.sunburst"/>-->
         <PageNavigation v-if="modeObj.options.paging"/>
         <ZoomControl v-if="modeObj.options.zoom"/>
         <StaffSelectionButton v-if="modeObj.options.scoreDef"/>

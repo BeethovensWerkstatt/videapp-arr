@@ -1,5 +1,5 @@
 <template>
-  <div id="sunburst">
+  <div v-if="visible" id="sunburst">
 
   </div>
 </template>
@@ -18,7 +18,9 @@ let unwatch
 export default {
   name: 'SunburstPane',
   computed: {
-
+    visible: function() {
+      return this.$store.getters.activeModeObject.options.sunburst
+    }
   },
   mounted () {
     this.setupSunburst()
@@ -28,20 +30,22 @@ export default {
     }
 
     unwatch = this.$store.watch((state, getters) => ({
-      request: getters.currentRequest, dataAvailable: (getters.currentMEI !== null), mode: getters.activeModeId
+      request: getters.currentRequest, dataAvailable: (getters.currentMEI !== null), mode: getters.activeModeId, sunburstVisible: getters.activeModeObject.options.sunburst
     }),(newState, oldState) => {
-      if (newState.request !== oldState.request) {
+
+      if (newState.sunburstVisible && !oldState.sunburstVisible) {
+        this.setupSunburst()
+        this.sunburstLoadData()
+      } if (!newState.sunburstVisible) {
+
+      } else if (newState.request !== oldState.request) {
         // render data when already available
         if (this.$store.getters.currentMEI !== null) {
           this.sunburstLoadData()
         }
-      }
-
-      if (newState.dataAvailable && !oldState.dataAvailable) {
+      } else if (newState.dataAvailable && !oldState.dataAvailable) {
         this.sunburstLoadData()
-      }
-
-      if (newState.mode !== oldState.mode) {
+      } else if (newState.mode !== oldState.mode) {
         this.sunburstLoadData()
       }
     })
@@ -53,6 +57,11 @@ export default {
       console.log('[ERROR] Unable to remove watcher: ' + err)
     }
   },
+  /*destroyed () {
+    console.log('\nkilling time')
+    document.getElementById('sunburst').remove()
+    console.log('success')
+  },*/
   methods: {
     openPageByElementID: function(id) {
       try {
@@ -289,6 +298,7 @@ export default {
           return obj;
       } catch(err) {
           console.log('error:buildSunburstDataFromMEI ' + err)
+          return {}
       }
     },
 
