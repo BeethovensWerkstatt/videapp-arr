@@ -72,16 +72,16 @@
     "en": "Variance"
   },
   "difference": {
-    "de": "Differenz",
-    "en": "Difference"
+    "de": "Tonhöhen-/Tondauervarianz",
+    "en": "Variance of Pitch Class and Rhythm"
   },
   "deletedNotes": {
-    "de": "Getilgte Noten",
-    "en": "Deleted Notes"
+    "de": "Tilgung",
+    "en": "Deletion"
   },
   "addedNotes": {
-    "de": "Ergänzte Noten",
-    "en": "Added Notes"
+    "de": "Hinzufügung",
+    "en": "Addition"
   },
   "options": {
     "de": "Optionen",

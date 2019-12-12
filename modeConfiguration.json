@@ -22,9 +22,32 @@
       "search":true
     }
   },
+  "geneticComparison": {
+    "id":"geneticComparison",
+    "position":2,
+    "apiLink":"basic",
+    "label":{
+      "de":"Bearbeitungsmaßnahmen",
+      "en":"Genetic Comparison"
+    },
+    "glossary":{
+      "de":"link-de",
+      "en":"link-en"
+    },
+    "options":{
+      "sunburst":true,
+      "zoom":true,
+      "paging":true,
+      "transposition":true,
+      "scoreDef":true,
+      "coloring":false,
+      "legend":true,
+      "search":true
+    }
+  },
   "eventComparison": {
     "id":"eventComparison",
-    "position":2,
+    "position":3,
     "apiLink":"basic",
     "label":{
       "de":"Einzelnotenvergleich",
@@ -45,13 +68,13 @@
       "search":true
     }
   },
-  "geneticComparison": {
-    "id":"geneticComparison",
-    "position":3,
-    "apiLink":"basic",
+  "harmonicComparison": {
+    "id":"harmonicComparison",
+    "position":4,
+    "apiLink":"harmonicComparison",
     "label":{
-      "de":"Kompositorische Maßnahmen",
-      "en":"Genetic Comparison"
+      "de":"Harmonievergleich",
+      "en":"Harmonic Comparison"
     },
     "glossary":{
       "de":"link-de",
@@ -64,31 +87,8 @@
       "transposition":true,
       "scoreDef":true,
       "coloring":false,
-      "legend":true,
-      "search":true
-    }
-  },
-  "melodicComparison": {
-    "id":"melodicComparison",
-    "position":4,
-    "apiLink":"melodicComparison",
-    "label":{
-      "de":"Stimmenkontur",
-      "en":"Melodic Comparison"
-    },
-    "glossary":{
-      "de":"link-de",
-      "en":"link-en"
-    },
-    "options":{
-      "sunburst":false,
-      "zoom":true,
-      "paging":false,
-      "transposition":false,
-      "scoreDef":true,
-      "coloring":false,
       "legend":false,
-      "search":false
+      "search":true
     }
   },
   "eventDensity": {
@@ -114,27 +114,27 @@
       "search":true
     }
   },
-  "harmonicComparison": {
-    "id":"harmonicComparison",
+  "melodicComparison": {
+    "id":"melodicComparison",
     "position":6,
-    "apiLink":"harmonicComparison",
+    "apiLink":"melodicComparison",
     "label":{
-      "de":"Harmonievergleich",
-      "en":"Harmonic Comparison"
+      "de":"Stimmenkontur",
+      "en":"Melodic Comparison"
     },
     "glossary":{
       "de":"link-de",
       "en":"link-en"
     },
     "options":{
-      "sunburst":true,
+      "sunburst":false,
       "zoom":true,
-      "paging":true,
-      "transposition":true,
+      "paging":false,
+      "transposition":false,
       "scoreDef":true,
       "coloring":false,
       "legend":false,
-      "search":true
+      "search":false
     }
   }
 }
