@@ -67,7 +67,8 @@ export default new Vuex.Store({
       showDots: true,
       showDurations: true,
       showLines: false
-    }
+    },
+    sunburstVisible: false
     // searchPaneVisible: false,
     // searchSelectionActive: false
   },
@@ -291,6 +292,9 @@ export default new Vuex.Store({
         let newOpts = { ...state.melodicOptions, showLines: !value }
         state.melodicOptions = newOpts
       }
+    },
+    TOGGLE_SUNBURST (state) {
+      state.sunburstVisible = !state.sunburstVisible
     }
   },
   actions: {
@@ -547,6 +551,9 @@ export default new Vuex.Store({
     },
     toggleMelodicLines ({ commit }) {
       commit('TOGGLE_MELODIC_LINES')
+    },
+    toggleSunburst ({ commit }) {
+      commit('TOGGLE_SUNBURST')
     }
   },
   getters: {
@@ -745,6 +752,9 @@ export default new Vuex.Store({
     },
     showMelodicLines: state => {
       return state.melodicOptions.showLines
+    },
+    sunburstVisible: state => {
+      return state.sunburstVisible
     }
   }
 })
