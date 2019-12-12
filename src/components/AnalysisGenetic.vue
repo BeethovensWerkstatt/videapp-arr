@@ -40,6 +40,7 @@ export default {
 $colorVariant1: #f51d1d;
 $colorVariant2: #3ce644;
 $neutralColor: #000000;
+$fadedColor: #999999;
 
 #analysisGenetic #viewSettings {
   .fa-tint {
@@ -56,6 +57,12 @@ $neutralColor: #000000;
 }
 
 #analysisGenetic svg {
+
+  svg .layer, svg .clef, svg .keySig, svg .meterSig, svg .dynam, svg .dir, svg .barLineAttr, svg .staff > path, svg .slur > path {
+    fill: $fadedColor;
+    stroke: $fadedColor;
+  }
+
   .file1 {
     .ts, .od, .sd, .os, .noMatch {
       fill: $colorVariant1;

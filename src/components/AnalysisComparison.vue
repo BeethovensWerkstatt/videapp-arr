@@ -72,8 +72,15 @@ export default {
   $highlightColor_octSame_durDiff: #26d6fc;
   $highlightColor_octDiff_durDiff: #1b44f4;
   $highlightColor_transp_durSame: #859900;
+  $fadedColor: #999999;
 
   #svgContainer.comparison {
+
+    svg .layer, svg .clef, svg .keySig, svg .meterSig, svg .dynam, svg .dir, svg .barLineAttr, svg .staff > path, svg .slur > path {
+      fill: $fadedColor;
+      stroke: $fadedColor;
+    }
+
     .noMatch, .noMatch .accid {
       fill: $highlightColor_different;
       stroke: $highlightColor_different;
