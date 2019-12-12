@@ -1,6 +1,6 @@
 <template>
   <div id="searchPane">
-    <button class="btn" v-bind:class="{ 'btn-primary': searchSelectionActive, 'btn-link': !searchSelectionActive }" v-on:click="toggleSelectionMode()"><i class="icon icon-edit"></i> Select</button>
+    <button class="btn" v-bind:class="{ 'btn-primary': searchSelectionActive, 'btn-link': !searchSelectionActive }" v-on:click="toggleSelectionMode()"><i class="icon icon-edit"></i> {{i18n('searchSelectionLabel')}}</button>
   </div>
 </template>
 
@@ -15,6 +15,9 @@ export default {
       } else {
         this.$store.dispatch('activateSearchSelection')
       }
+    },
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   },
   computed: {

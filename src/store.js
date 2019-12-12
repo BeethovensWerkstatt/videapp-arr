@@ -32,6 +32,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    language: 'de',
     comparisonsLoaded: false,
     comparisons: {},
     activeComparison: null,
@@ -68,11 +69,15 @@ export default new Vuex.Store({
       showDurations: true,
       showLines: false
     },
-    sunburstVisible: false
+    sunburstVisible: false,
+    gotoMeasureVisible: false
     // searchPaneVisible: false,
     // searchSelectionActive: false
   },
   mutations: {
+    SET_LANGUAGE (state, lang) {
+      state.language = lang
+    },
     FETCH_COMPARISONLIST (state, comparisons) {
       comparisons.forEach(comparison => {
         const created = {}
@@ -295,9 +300,17 @@ export default new Vuex.Store({
     },
     TOGGLE_SUNBURST (state) {
       state.sunburstVisible = !state.sunburstVisible
+    },
+    TOGGLE_GOTOMEASURE (state) {
+      state.gotoMeasureVisible = !state.gotoMeasureVisible
     }
   },
   actions: {
+    setLanguage ({ commit }, lang) {
+      if (lang === 'de' || lang === 'en') {
+        commit('SET_LANGUAGE', lang)
+      }
+    },
     fetchComparisons ({ commit }) {
       return new Promise(resolve => {
         let request = 'resources/xql/getComparisonListing.xql'
@@ -460,7 +473,7 @@ export default new Vuex.Store({
       commit('SET_MAX_PAGE', n)
     },
     setZoom ({ commit, state }, n) {
-      let num = parseInt(n,10)
+      let num = parseInt(n, 10)
       if (!isNaN(num) && num >= verovioMinZoom && num <= verovioMaxZoom) {
         commit('SET_ZOOM', num)
       } else if (!isNaN(num) && num > verovioMaxZoom) {
@@ -554,9 +567,15 @@ export default new Vuex.Store({
     },
     toggleSunburst ({ commit }) {
       commit('TOGGLE_SUNBURST')
+    },
+    toggleGotoMeasure ({ commit }) {
+      commit('TOGGLE_GOTOMEASURE')
     }
   },
   getters: {
+    language: state => {
+      return state.language
+    },
     comparisons: state => {
       const keys = Object.keys(state.comparisons)
       const values = []
@@ -755,6 +774,9 @@ export default new Vuex.Store({
     },
     sunburstVisible: state => {
       return state.sunburstVisible
+    },
+    gotoMeasureVisible: state => {
+      return state.gotoMeasureVisible
     }
   }
 })

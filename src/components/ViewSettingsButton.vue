@@ -7,6 +7,9 @@
 export default {
   name: 'ViewSettingsButton',
   methods: {
+    i18n: function(code) {
+      return this.$i18n(code)
+    },
     toggleViewSettingsPane: function() {
       if (this.$store.gettersViewSettingsVisible) {
         this.$store.dispatch('deactivateViewSettingsVisible')

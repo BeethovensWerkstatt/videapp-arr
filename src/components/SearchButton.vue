@@ -1,5 +1,5 @@
 <template>
-    <button class="btn" v-bind:class="{ 'btn-primary': searchPaneVisible, 'btn-link': !searchPaneVisible }" v-on:click="toggleSearchPane()">Suche</button>
+    <button class="btn" v-bind:class="{ 'btn-primary': searchPaneVisible, 'btn-link': !searchPaneVisible }" v-on:click="toggleSearchPane()">{{i18n('searchButtonLabel')}}</button>
 </template>
 
 <script>
@@ -13,6 +13,9 @@ export default {
       } else {
         this.$store.dispatch('showSearchPane')
       }
+    },
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   },
   computed: {

@@ -1,0 +1,162 @@
+{
+  "comparisonsSectionLabel": {
+    "de": "Fassungsvergleiche",
+    "en": "Available Comparisons"
+  },
+  "perspective": {
+    "de": "Perspektiven",
+    "en": "Perspectives"
+  },
+  "selectComparisonToastHeading": {
+    "de": "Fassungsvergleich auswählen",
+    "en": "Select Comparison"
+  },
+  "selectComparisonToastBody": {
+    "de": "Bitte wählen Sie zunächst einen Fassungsvergleich auf der linken Seite aus. Über den Info-Knopf an der Seite erreichen Sie eine kurze Einführung in die bearbeiteten Werke.",
+    "en": "In order to start, you need to select a comparison of two works on the left side. With the Info button on the right, you may access a brief introduction for each of the arranged works."
+  },
+  "selectPerspectiveToastHeading": {
+    "de": "Perspektive auswählen",
+    "en": "Select Comparison Perspective"
+  },
+  "selectPerspectiveToastBody": {
+    "de": "Sie müssen außerdem eine Perspektive für den Vergleich auswählen. Diese finden sich unterhalb der verfügbaren Fassungsvergleiche.",
+    "en": "You also need to select a perspective for your comparison on the left side. They are located beneath the available comparisons."
+  },
+  "loadingMessage": {
+    "de": "lade Daten",
+    "en": "loading data"
+  },
+  "processingMessage": {
+    "de": "prozessiere",
+    "en": "processing"
+  },
+  "networkErrorHeading": {
+    "de": "Netzwerkfehler",
+    "en": "Network Error"
+  },
+  "networkErrorBody": {
+    "de": "Versuchen Sie es bitte zu einem späteren Zeitpunkt erneut.",
+    "en": "Please try again later"
+  },
+  "detailedColorationButton": {
+    "de": "Differenzierte Einfärbung",
+    "en": "Detailed Colors"
+  },
+  "legend": {
+    "de": "Legende",
+    "en": "Legend"
+  },
+  "invariance": {
+    "de": "Invarianz",
+    "en": "Invariance"
+  },
+  "octaveVariance": {
+    "de": "Oktav-Varianz",
+    "en": "Variance of Octave"
+  },
+  "rhythmicVariance": {
+    "de": "Rhythmus-Varianz",
+    "en": "Rhythmic Variance"
+  },
+  "rhythmicOctaveVariance": {
+    "de": "Oktav-Rhythmus-Varianz",
+    "en": "Variance of Rhythm and Octave"
+  },
+  "pitchClassVariance": {
+    "de": "Tonhöhen-Varianz",
+    "en": "Variance of Pitch Class"
+  },
+  "variance": {
+    "de": "Varianz",
+    "en": "Variance"
+  },
+  "difference": {
+    "de": "Differenz",
+    "en": "Difference"
+  },
+  "deletedNotes": {
+    "de": "Getilgte Noten",
+    "en": "Deleted Notes"
+  },
+  "addedNotes": {
+    "de": "Ergänzte Noten",
+    "en": "Added Notes"
+  },
+  "options": {
+    "de": "Optionen",
+    "en": "Options"
+  },
+  "durations": {
+    "de": "Tondauern",
+    "en": "Durations"
+  },
+  "melodicLines": {
+    "de": "Stimmführung",
+    "en": "Melodic Lines"
+  },
+  "colorPicker": {
+    "de": "Farbwahl",
+    "en": "Color Selection"
+  },
+  "colorationButtonLabel": {
+    "de": "Einfärbung",
+    "en": "Coloration"
+  },
+  "searchButtonLabel": {
+    "de": "Suche",
+    "en": "Search"
+  },
+  "searchSelectionLabel": {
+    "de": "Auswahl",
+    "en": "Select"
+  },
+  "staffSelectionButtonLabel": {
+    "de": "Besetzung",
+    "en": "Score Setup"
+  },
+  "staffSetup": {
+    "de": "Besetzung",
+    "en": "Score Setup"
+  },
+  "transposeButtonLabel": {
+    "de": "Transposition",
+    "en": "Transposition"
+  },
+  "transposition": {
+    "de": "Transposition",
+    "en": "Transposition"
+  },
+  "transposeModal_noTrans": {
+    "de": "Keine Transposition",
+    "en": ""
+  },
+  "transposeModal_match1": {
+    "de": "Fassung 1",
+    "en": "Version 1"
+  },
+  "transposeModal_match1_desc": {
+    "de": "(Fassung 2 wird ggf. transponiert)",
+    "en": "(If necessary, version 2 will be transposed)"
+  },
+  "transposeModal_match2": {
+    "de": "Fassung 2",
+    "en": "Version 2"
+  },
+  "transposeModal_match2_desc": {
+    "de": "(Fassung 1 wird ggf. transponiert)",
+    "en": "(If necessary, version 1 will be transposed)"
+  },
+  "transposeModal_avoidAccid": {
+    "de": "Vermeide Vorzeichen",
+    "en": "Avoid Accidentals"
+  },
+  "cancelButtonLabel": {
+    "de": "Abbrechen",
+    "en": "Cancel"
+  },
+  "okButtonLabel": {
+    "de": "OK",
+    "en": "OK"
+  }
+}

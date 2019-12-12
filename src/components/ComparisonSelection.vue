@@ -1,6 +1,6 @@
 <template>
   <div id="comparisonSelector">
-    <SectionLabel label="Fassungsvergleiche"/>
+    <SectionLabel v-bind:label="i18n('comparisonsSectionLabel')"/>
 
     <div class="comparisonContainer" v-for="comparison in comparisons" v-bind="comparison">
 
@@ -46,6 +46,9 @@ export default {
     },
     displayIntro (id) {
       this.$store.dispatch('displayIntro',id)
+    },
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   }
 }

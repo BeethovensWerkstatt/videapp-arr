@@ -1,17 +1,15 @@
 <template>
   <div id="analysisGenetic">
     <div id="viewSettings">
+      <!--<div class="viewSettingItem">{{i18n('legend')}}<div>-->
       <div class="viewSettingItem">
-        Legende:
+        <i class="fas fa-tint id"></i> {{i18n('invariance')}}
       </div>
       <div class="viewSettingItem">
-        <i class="fas fa-tint id"></i> Identität
+        <i class="fas fa-tint deleted"></i> {{i18n('deletedNotes')}}
       </div>
       <div class="viewSettingItem">
-        <i class="fas fa-tint deleted"></i> Getilgte Noten
-      </div>
-      <div class="viewSettingItem">
-        <i class="fas fa-tint added"></i> Ergänzte Noten
+        <i class="fas fa-tint added"></i> {{i18n('addedNotes')}}
       </div>
     </div>
     <div id="svgContainer" class="geneticComparison"></div>
@@ -29,7 +27,9 @@ export default {
 
   },
   methods: {
-
+    i18n: function(code) {
+      return this.$i18n(code)
+    }
   }
 }
 </script>

@@ -2,21 +2,19 @@
   <div id="analysisMelodic">
     <div id="viewSettings">
       <div class="viewSettingItem">
-        Optionen:
+        {{i18n('options')}}
       </div>
       <div class="viewSettingItem">
-        <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicDurations}" v-on:click="toggleDurations()"><i class="fas fa-align-center fa-flip-vertical"></i> Tondauern</button>
+        <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicDurations}" v-on:click="toggleDurations()"><i class="fas fa-align-center fa-flip-vertical"></i> {{i18n('durations')}}</button>
       </div>
       <!--<div class="viewSettingItem">
         <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicDots}" v-on:click="toggleDots()"><i class="fas fa-align-center fa-music"></i> Noten</button>
       </div>-->
       <div class="viewSettingItem">
-        <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicLines}" v-on:click="toggleLines()"><i class="fas fa-wave-square"></i> Stimmführung</button>
+        <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicLines}" v-on:click="toggleLines()"><i class="fas fa-wave-square"></i> {{i18n('melodicLines')}}</button>
       </div>
     </div>
-    <div id="stagingArea" v-bind:class="{'showDots': showMelodicDots, 'showIndividualLines': showMelodicDurations, 'showSemiConnectedLines': showMelodicLines}">
-      stage
-    </div>
+    <div id="stagingArea" v-bind:class="{'showDots': showMelodicDots, 'showIndividualLines': showMelodicDurations, 'showSemiConnectedLines': showMelodicLines}"/>
   </div>
 </template>
 
@@ -92,6 +90,9 @@ export default {
     }
   },
   methods: {
+    i18n: function(code) {
+      return this.$i18n(code)
+    },
     toggleDots: function() {
       this.$store.dispatch('toggleMelodicDots')
     },

@@ -2,7 +2,7 @@
   <div id="analysisPlain">
     <div id="viewSettings" v-if="highlightingVisible">
       <div class="viewSettingItem">
-        Farbwahl:
+        {{i18n('colorPicker')}}
       </div>
       <div class="viewSettingItem btn-group btn-group-block colorButtons">
         <button class="btn btn-action" v-bind:class="{'btn-primary': currentColor === 1}" v-on:click="setCurrentColor(1)"><i class="fas fa-tint color1"></i></button>
@@ -50,6 +50,9 @@ export default {
     }
   },
   methods: {
+    i18n: function(code) {
+      return this.$i18n(code)
+    },
     renderPage: function(n) {
 
       this.removePageListeners()

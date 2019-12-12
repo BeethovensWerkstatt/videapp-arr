@@ -5,13 +5,13 @@
       </section>
       <section class="navbar-center">
           <div>
-              <div class="appTitle">Modul 2</div>
-              <router-link to="/info" id="openModalBtn">info</router-link>
+              <div class="appTitle">VideApp<sub>Arrangements</sub></div>
+              <!--<router-link to="/info" id="openModalBtn">info</router-link>-->
           </div>
       </section>
       <section class="navbar-section">
           <div id="noteID"></div>
-          <a id="githubLogo" href="https://github.com/BeethovensWerkstatt/module2" target="_blank" class="btn btn-link">GitHub</a>
+          <a id="githubLogo" href="https://github.com/BeethovensWerkstatt/videapp-arr" target="_blank" class="btn btn-link">GitHub</a>
       </section>
   </header>
 </template>

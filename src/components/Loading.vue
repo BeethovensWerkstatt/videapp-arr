@@ -3,13 +3,13 @@
     <div id="loadingFront">
       <div v-if="isloading">
         <div class="loading loading-lg"></div>
-        <div id="loadingText">{{loadingText}}</div>
+        <div id="loadingText">{{i18n('loadingMessage')}}</div>
       </div>
       <div v-if="loadingError !== null">
         <div class="toast toast-error">
-          <h1>Network Error</h1>
-          <p>{{loadingError}}</p>
-          <p>Please try again later</p>
+          <h1>{{i18n('networkErrorHeading')}}</h1>
+          <p><code>{{loadingError}}</code></p>
+          <p>{{i18n('networkErrorBody')}}</p>
         </div>
       </div>
     </div>
@@ -26,12 +26,13 @@ export default {
     isloading: function() {
       return (this.$store.getters.currentlyLoading !== null)
     },
-    loadingText: function() {
-      // return this.$store.getters.currentlyLoading
-      return 'loading data'
-    },
     loadingError: function() {
       return this.$store.getters.loadingError
+    }
+  },
+  methods: {
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   }
 }
@@ -53,6 +54,7 @@ export default {
       width: 300px;
       margin: 10rem calc(50% - 150px);
       text-align: center;
+
   }
 }
 

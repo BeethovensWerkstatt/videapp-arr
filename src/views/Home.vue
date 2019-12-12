@@ -15,12 +15,12 @@
         <SearchPane v-if="searchPaneVisible"/>
         <Analysis v-if="comparisonSelected && modeSelected"/>
         <div v-if="!comparisonSelected" class="toast">
-          <h1>Select Comparison</h1>
-          <p>In order to start, you need to select a comparison of two works on the left side.</p>
+          <h1>{{i18n('selectComparisonToastHeading')}}</h1>
+          <p>{{i18n('selectComparisonToastBody')}}</p>
         </div>
         <div v-else-if="!modeSelected" class="toast toast-primary">
-          <h1>Select Comparison Mode</h1>
-          <p>In order to start, you need to select a mode of comparison on the left side.</p>
+          <h1>{{i18n('selectPerspectiveToastHeading')}}</h1>
+          <p>{{i18n('selectPerspectiveToastBody')}}</p>
         </div>
       </div>
       <StaffSelectionModal/>
@@ -64,6 +64,11 @@ export default {
     },
     searchPaneVisible: function() {
       return this.$store.getters.searchPaneVisible
+    }
+  },
+  methods: {
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   }
 }

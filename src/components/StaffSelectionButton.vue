@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-sm navigationTopItem" v-bind:class="{ 'btn-primary': staffSelectionVisible}" v-on:click="toggleStaffSelectionPane()"><i class="fas fa-align-right"></i> Besetzung</button>
+    <button class="btn btn-sm navigationTopItem" v-bind:class="{ 'btn-primary': staffSelectionVisible}" v-on:click="toggleStaffSelectionPane()"><i class="fas fa-align-right"></i> {{i18n('staffSelectionButtonLabel')}}</button>
 </template>
 
 <script>
@@ -13,6 +13,9 @@ export default {
       } else {
         this.$store.dispatch('activateStaffSelection')
       }
+    },
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   },
   computed: {
@@ -26,5 +29,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  
+
 </style>

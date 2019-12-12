@@ -2,35 +2,35 @@
   <div id="analysisComparison">
     <div id="viewSettings">
       <div class="form-group float-right">
-        <label class="form-checkbox form-inline" style="margin: 0;">
-          <input type="checkbox" v-on:change.prevent="toggleColoration($event)" v-bind:checked="detailedColoration"><i class="form-icon"></i> Advanced
+        <label id="detailedColoration" class="form-checkbox form-inline" style="margin: 0;">
+          <input type="checkbox" v-on:change.prevent="toggleColoration($event)" v-bind:checked="detailedColoration"><i class="form-icon"></i> {{i18n('detailedColorationButton')}}
         </label>
       </div>
+      <!--<div class="viewSettingItem">
+        {{i18n('legend')}}
+      </div>-->
       <div class="viewSettingItem">
-        Legende:
-      </div>
-      <div class="viewSettingItem">
-        <i class="fas fa-tint id"></i> Identität
+        <i class="fas fa-tint id"></i> {{i18n('invariance')}}
       </div>
       <div v-if="detailedColoration" class="viewSettingItem">
         <div class="viewSettingDetail">
-          <i class="fas fa-tint os"></i> Oktavvarianz
+          <i class="fas fa-tint os"></i> {{i18n('octaveVariance')}}
         </div>
         <div class="viewSettingDetail">
-          <i class="fas fa-tint sd"></i> Tondauervarianz
+          <i class="fas fa-tint sd"></i> {{i18n('rhythmicVariance')}}
         </div>
         <div class="viewSettingDetail">
-          <i class="fas fa-tint od"></i> Oktav- und Tondauervarianz
+          <i class="fas fa-tint od"></i> {{i18n('rhythmicOctaveVariance')}}
         </div>
         <div class="viewSettingDetail">
-          <i class="fas fa-tint ts"></i> Tonbuchstabenvarianz
+          <i class="fas fa-tint ts"></i> {{i18n('pitchClassVariance')}}
         </div>
       </div>
       <div v-else class="viewSettingItem">
-        <i class="fas fa-tint var"></i> Varianz
+        <i class="fas fa-tint var"></i> {{i18n('variance')}}
       </div>
       <div class="viewSettingItem">
-        <i class="fas fa-tint noMatch"></i> Differenz
+        <i class="fas fa-tint noMatch"></i> {{i18n('difference')}}
       </div>
     </div>
     <div id="svgContainer" class="comparison" v-bind:class="{'detailedColors': detailedColoration}"></div>
@@ -50,6 +50,9 @@ export default {
   methods: {
     toggleColoration: function() {
       this.$store.dispatch('toggleComparisonDetailedColoration')
+    },
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   },
   computed: {
@@ -115,20 +118,26 @@ export default {
     border-bottom: .5px solid #999999;
     padding: 10px 20px;
     text-align: left;
+    font-size: .7rem;
+
+    #detailedColoration {
+        position: relative;
+        top: -.1rem;
+    }
 
     .viewSettingItem {
       display: inline-block;
       padding: 0 .5rem;
       margin-right: .5rem;
-      & + .viewSettingItem + .viewSettingItem {
+      & + .viewSettingItem {
         border-left: .5px solid #666666;
         padding-left: 1rem;
       }
     }
 
-    .viewSettingDetail {
+    .viewSettingDetail + .viewSettingDetail {
       display: inline-block;
-      padding: 0 .5rem;
+      padding-left: .5rem;
     }
 
     .fa-tint {

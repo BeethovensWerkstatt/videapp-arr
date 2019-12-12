@@ -1,6 +1,6 @@
 <template>
   <div id="modeSelector">
-    <SectionLabel label="Modus"/>
+    <SectionLabel v-bind:label="i18n('perspective')"/>
     <ul class="navigationList">
 
       <li class="modeBtn" v-for="mode in modes" v-bind:id="mode.id" v-bind:class="{active: (mode.id === activeModeId)}" v-on:click="activateMode(mode.id)">
@@ -33,6 +33,9 @@ export default {
   methods: {
     activateMode (id) {
       this.$store.dispatch('activateMode',id)
+    },
+    i18n: function(code) {
+      return this.$i18n(code)
     }
   }
 }

@@ -4,7 +4,7 @@
     <div class="modal-container">
       <div class="modal-header">
         <a href="#close" class="btn btn-clear float-right" aria-label="Close" v-on:click="toggleStaffSelectionPane($event)"></a>
-        <div class="modal-title h5">Besetzung</div>
+        <div class="modal-title h5">{{i18n('staffSetup')}}</div>
       </div>
       <div class="modal-body">
         <div class="content">
@@ -18,8 +18,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button v-on:click="toggleStaffSelectionPane($event)" class="btn btn-sm cancelBtn">cancel</button>
-        <button v-on:click="acceptStaffSelection($event)" class="btn btn-sm btn-primary">adjust score</button>
+        <button v-on:click="toggleStaffSelectionPane($event)" class="btn btn-sm cancelBtn">{{i18n('cancelButtonLabel')}}</button>
+        <button v-on:click="acceptStaffSelection($event)" class="btn btn-sm btn-primary">{{i18n('okButtonLabel')}}</button>
       </div>
     </div>
 
@@ -36,6 +36,9 @@ export default {
     StaffSelectionItem
   },
   methods: {
+    i18n: function(code) {
+      return this.$i18n(code)
+    },
     toggleStaffSelectionPane: function(e) {
       this.$store.dispatch('rejectProposedStaffSetup')
       this.$store.dispatch('deactivateStaffSelection')

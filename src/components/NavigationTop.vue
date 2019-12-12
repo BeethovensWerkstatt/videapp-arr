@@ -1,12 +1,13 @@
 <template>
     <div id="navigationTop" class="navbar">
       <section class="navbar-section">
-          <SunburstButton v-if="modeObj.options.sunburst"/>
-          <PageNavigation v-if="modeObj.options.paging"/>
-          <ZoomControl v-if="modeObj.options.zoom"/>
-          <StaffSelectionButton v-if="modeObj.options.scoreDef"/>
-          <TransposeButton v-if="modeObj.options.transposition"/>
-          <ColorationButton v-if="modeObj.options.coloring"/>
+        <SunburstButton if="modeObj.options.sunburst"/>
+        <!--<GotoMeasureButton if="modeObj.options.sunburst"/>-->
+        <PageNavigation v-if="modeObj.options.paging"/>
+        <ZoomControl v-if="modeObj.options.zoom"/>
+        <StaffSelectionButton v-if="modeObj.options.scoreDef"/>
+        <TransposeButton v-if="modeObj.options.transposition"/>
+        <ColorationButton v-if="modeObj.options.coloring"/>
       </section>
 
       <section class="navbar-section">
@@ -18,6 +19,7 @@
 <script>
 
 import SunburstButton from '@/components/SunburstButton.vue'
+import GotoMeasureButton from '@/components/GotoMeasureButton.vue'
 import PageNavigation from '@/components/PageNavigation.vue'
 import ZoomControl from '@/components/ZoomControl.vue'
 import SearchButton from '@/components/SearchButton.vue'
@@ -29,6 +31,7 @@ export default {
   name: 'NavigationTop',
   components: {
     SunburstButton,
+    GotoMeasureButton,
     PageNavigation,
     ZoomControl,
     SearchButton,
