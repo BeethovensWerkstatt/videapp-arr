@@ -7,9 +7,9 @@
       <div class="viewSettingItem">
         <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicDurations}" v-on:click="toggleDurations()"><i class="fas fa-align-center fa-flip-vertical"></i> Tondauern</button>
       </div>
-      <div class="viewSettingItem">
+      <!--<div class="viewSettingItem">
         <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicDots}" v-on:click="toggleDots()"><i class="fas fa-align-center fa-music"></i> Noten</button>
-      </div>
+      </div>-->
       <div class="viewSettingItem">
         <button class="btn btn-sm" v-bind:class="{ 'btn-primary': showMelodicLines}" v-on:click="toggleLines()"><i class="fas fa-wave-square"></i> Stimmführung</button>
       </div>
