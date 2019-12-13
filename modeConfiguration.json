@@ -20,7 +20,8 @@
       "coloring":true,
       "legend":false,
       "search":true
-    }
+    },
+    "internalBeta": false
   },
   "geneticComparison": {
     "id":"geneticComparison",
@@ -43,7 +44,8 @@
       "coloring":false,
       "legend":true,
       "search":true
-    }
+    },
+    "internalBeta": false
   },
   "eventComparison": {
     "id":"eventComparison",
@@ -66,7 +68,8 @@
       "coloring":false,
       "legend":true,
       "search":true
-    }
+    },
+    "internalBeta": false
   },
   "harmonicComparison": {
     "id":"harmonicComparison",
@@ -89,7 +92,8 @@
       "coloring":false,
       "legend":false,
       "search":true
-    }
+    },
+    "internalBeta": true
   },
   "eventDensity": {
     "id":"eventDensity",
@@ -112,7 +116,8 @@
       "coloring":false,
       "legend":false,
       "search":true
-    }
+    },
+    "internalBeta": false
   },
   "melodicComparison": {
     "id":"melodicComparison",
@@ -135,6 +140,7 @@
       "coloring":false,
       "legend":false,
       "search":false
-    }
+    },
+    "internalBeta": false
   }
 }
