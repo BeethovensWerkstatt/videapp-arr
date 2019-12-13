@@ -14,13 +14,23 @@
         <NavigationTop v-if="comparisonSelected && modeSelected"/>
         <SearchPane v-if="searchPaneVisible"/>
         <Analysis v-if="comparisonSelected && modeSelected"/>
-        <div v-if="!comparisonSelected" class="toast">
-          <h1>{{i18n('selectComparisonToastHeading')}}</h1>
-          <p>{{i18n('selectComparisonToastBody')}}</p>
+
+        <div class="opening" v-if="!comparisonSelected && lang === 'de'">
+          <div class="toast">
+            <h1>Herzlich willkommen bei der VideApp<sub>Arrangements</sub></h1>
+            <p>Dieses Werkzeug ermöglicht Ihnen Vergleiche von Fassungen desselben Werks unter verschiedenen Perspektiven. So gewinnen Sie detaillierte Einblicke in Beethovens Bearbeitungstechniken. Die dabei behandelten Werke in ihren unterschiedlichen Versionen finden Sie anwählbar im Menü links aufgelistet.</p>
+            <p>Das Werkzeug ist gegenwärtig noch in Entwicklung, daher sind noch nicht alle vorgesehenen Aspekte (darunter auch ausführliche Anleitungen und Dokumentationen) umgesetzt. Gerne nehmen wir Ihre Anregungen unter <a href="mailto:info@beethovens-werkstatt.de">info@beethovens-werkstatt.de</a> entgegen.</p>
+            <p>Wählen Sie jetzt bitte einen Fassungsvergleich auf der linken Seite aus.</p>
+          </div>
         </div>
-        <div v-else-if="!modeSelected" class="toast toast-primary">
-          <h1>{{i18n('selectPerspectiveToastHeading')}}</h1>
-          <p>{{i18n('selectPerspectiveToastBody')}}</p>
+        <!--<h1>{{i18n('selectComparisonToastHeading')}}</h1>
+        <p>{{i18n('selectComparisonToastBody')}}</p>-->
+
+        <div class="opening" v-else-if="!modeSelected && lang === 'de'">
+          <div class="toast toast-primary">
+            <h1>{{i18n('selectPerspectiveToastHeading')}}</h1>
+            <p>Die Art der Perspektive wählen Sie im Menü darunter: Ob schlichte Synopse der jeweiligen Fassungen (mit der Möglichkeit dort eigene farbliche Markierungen vorzunehmen, <strong>Fassungssynopse</strong>), farbliche Hervorhebung der beim Umsetzen zu beobachtenden kompositorischen Maßnahmen (<strong>Bearbeitungsmaßnahmen</strong>), Vergleich auf der Ebene einzelner Noten (mit unterschiedlichen Farbwerten für die Art der Beziehung zum Ausgangston, <strong>Einzelnotenvergleich</strong>), grafische Wiedergabe des Verhältnisses der bloßen Kontur der einzelnen Stimmen (<strong>Stimmenkontur</strong>), Dichte der Noten-"Onsets" (<strong>Ereignisdichte</strong>) oder Modifikationen der Harmonik (<strong>Harmonievergleich</strong>) – all dies verdeutlicht Beethovens Herangehensweise jenseits purer mechanischer Übertragung.</p>
+          </div>
         </div>
       </div>
       <StaffSelectionModal/>
@@ -64,6 +74,9 @@ export default {
     },
     searchPaneVisible: function() {
       return this.$store.getters.searchPaneVisible
+    },
+    lang: function() {
+      return this.$store.getters.language
     }
   },
   methods: {
@@ -75,6 +88,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+$sidebarWidth: 360px;
 
 #fullBox {
   display: flex;
@@ -91,7 +106,7 @@ export default {
     background-color: #f5f5f5;
     border-right: 0.5px solid #666666;
     padding: 0.5rem 1rem;
-    flex: 0 0 360px;
+    flex: 0 0 $sidebarWidth;
     align-self: stretch;
     overflow: auto;
   }
@@ -104,9 +119,19 @@ export default {
     flex-direction: column;
     flex-wrap: nowrap;
 
+    width: calc(100% - $sidebarWidth);
+
     .toast {
       width: unset;
       margin: 3rem;
+    }
+  }
+
+  .opening {
+    height: 100%;
+    overflow: scroll;
+    p {
+      padding: 0 2rem 1rem;
     }
   }
 

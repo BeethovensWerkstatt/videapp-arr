@@ -20,7 +20,7 @@
     "en": "Select Comparison Perspective"
   },
   "selectPerspectiveToastBody": {
-    "de": "Sie müssen außerdem eine Perspektive für den Vergleich auswählen. Diese finden sich unterhalb der verfügbaren Fassungsvergleiche.",
+    "de": "Die Art der Perspektive wählen Sie im Menü darunter: Ob schlichte Synopse der jeweiligen Fassungen (mit der Möglichkeit dort eigene farbliche Markierungen vorzunehmen), Vergleich auf der Ebene einzelner Noten (mit unterschiedlichen Farbwerten für die Art der Beziehung zum Ausgangston), farbliche Hervorhebung der beim Umsetzen zu beobachtenden kompositorischen Maßnahmen, grafische Wiedergabe des Verhältnisses der bloßen Kontur der einzelnen Stimmen, Dichte der On-Sets oder Modifikationen der Harmonik – all dies verdeutlicht Beethovens Herangehensweise jenseits purer mechanischer Übertragung.",
     "en": "You also need to select a perspective for your comparison on the left side. They are located beneath the available comparisons."
   },
   "loadingMessage": {
@@ -129,7 +129,7 @@
   },
   "transposeModal_noTrans": {
     "de": "Keine Transposition",
-    "en": ""
+    "en": "No Transposition"
   },
   "transposeModal_match1": {
     "de": "Fassung 1",

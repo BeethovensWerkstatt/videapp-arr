@@ -8,8 +8,8 @@
       "en":"Score Synopsis"
     },
     "glossary":{
-      "de":"link-de",
-      "en":"link-en"
+      "de":"",
+      "en":""
     },
     "options":{
       "sunburst":true,
@@ -31,8 +31,8 @@
       "en":"Genetic Comparison"
     },
     "glossary":{
-      "de":"link-de",
-      "en":"link-en"
+      "de":"",
+      "en":""
     },
     "options":{
       "sunburst":true,
@@ -54,8 +54,8 @@
       "en":"Single Note Comparison"
     },
     "glossary":{
-      "de":"link-de",
-      "en":"link-en"
+      "de":"",
+      "en":""
     },
     "options":{
       "sunburst":true,
@@ -77,8 +77,8 @@
       "en":"Harmonic Comparison"
     },
     "glossary":{
-      "de":"link-de",
-      "en":"link-en"
+      "de":"",
+      "en":""
     },
     "options":{
       "sunburst":true,
@@ -100,8 +100,8 @@
       "en":"Event Density"
     },
     "glossary":{
-      "de":"link-de",
-      "en":"link-en"
+      "de":"",
+      "en":""
     },
     "options":{
       "sunburst":true,
@@ -123,8 +123,8 @@
       "en":"Melodic Comparison"
     },
     "glossary":{
-      "de":"link-de",
-      "en":"link-en"
+      "de":"",
+      "en":""
     },
     "options":{
       "sunburst":false,
