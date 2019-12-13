@@ -16,20 +16,18 @@ export default {
 
   },
   created () {
+    // this.setOptions() -> can't do this yet, because it depends on screen size, which isn't determined yet
     this.$store.dispatch('fetchMEI')
-    // this.setOptions()
   },
   mounted () {
+    window.addEventListener('resize', this.handleResize)
+    this.setOptions()
 
     // initial Verovio rendering (when data available)
     if (this.$store.getters.currentMEI !== null) {
       this.loadMEI()
       this.renderPage(this.$store.getters.currentPage)
     }
-
-    width = document.getElementById('analysis').clientWidth
-    height = document.getElementById('analysis').clientHeight
-    this.setOptions()
 
     unwatch = this.$store.watch(
       (state, getters) => ({ request: getters.currentRequest, page: getters.currentPage, zoom: getters.currentZoom, dataAvailable: (getters.currentMEI !== null)}),
@@ -60,22 +58,7 @@ export default {
         if (newState.zoom !== oldState.zoom && newState.dataAvailable) {
           // make verovio change the zoom level
           try {
-            // get ID of first measure on current page
-            let firstMeasureId = document.querySelector('#svgContainer .measure').id
-            // update Verovio options
-            this.setOptions()
-            //get new page with that measure
-            let page = this.$verovio.getPageWithElement(firstMeasureId)
-            //set new page
-            let newMaxPage = this.$verovio.getPageCount()
-            if(newMaxPage > 0) {
-              this.$store.dispatch('setMaxPage',newMaxPage)
-            }
-            if(newState.page === page) {
-              this.renderPage(page)
-            } else {
-              this.$store.dispatch('setPage',page)
-            }
+            this.handleResize()
           } catch(err) {
             console.log('error: Unable to zoom: ' + err)
           }
@@ -90,6 +73,7 @@ export default {
     // this.$store.dispatch('fetchMEI')
   },
   beforeDestroy () {
+    window.removeEventListener('resize', this.handleResize)
     try {
       unwatch()
     } catch (err) {
@@ -101,12 +85,21 @@ export default {
 
       let zooooom = this.$store.getters.currentZoom
 
+      width = document.getElementById('analysis').clientWidth
+      height = document.getElementById('analysis').clientHeight
+      let internalWidth = (width - 20) * 100 / zooooom
+      let internalHeight = (height - 20) * 100 / zooooom
+
+      // console.log('\nsetting width to: ' + width + ', internal: ' + internalWidth)
+      // console.log('setting height to: ' + height + ', internal: ' + internalHeight)
+
       let options = {
         scale: zooooom,
         footer: 'none', // takes out the 'rendered by Verovio' footer
         header: 'none', // takes out the work label at the top
-        pageWidth: (width - 20) * 100 / zooooom,
-        pageHeight: (height - 20) * 100 / zooooom,
+        // breaks: 'none', -> continuous staff
+        pageWidth: internalWidth,
+        pageHeight: internalHeight,
         adjustPageHeight: true,
         spacingNonLinear: 1,
         spacingLinear: 0.05
@@ -436,6 +429,39 @@ export default {
       })
 
       return affectedIDs
+    },
+    handleResize: function() {
+      try {
+        // make sure we have loaded a file
+        if(this.$verovio.getPageCount() === 0) {
+            return false
+        }
+
+        let oldPage = this.$store.getters.currentPage
+
+        // get ID of first measure on current page
+        let firstMeasureId = document.querySelector('#svgContainer .measure').id
+        // update Verovio options
+        this.setOptions()
+        this.$verovio.redoLayout()
+
+        //get new page with that measure
+        let page = this.$verovio.getPageWithElement(firstMeasureId)
+
+        //set new max page
+        let newMaxPage = this.$verovio.getPageCount()
+        if(newMaxPage > 0) {
+          this.$store.dispatch('setMaxPage',newMaxPage)
+        }
+        if(oldPage === page) {
+          console.log('page stays the same')
+          this.renderPage(page)
+        } else {
+          this.$store.dispatch('setPage',page)
+        }
+      } catch(err) {
+          console.log('ERROR: Unable to redo Verovio layout: ' + err);
+      }
     }
   },
   computed: {
