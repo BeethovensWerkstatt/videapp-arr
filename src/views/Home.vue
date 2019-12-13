@@ -89,8 +89,6 @@ export default {
 
 <style scoped lang="scss">
 
-$sidebarWidth: 360px;
-
 #fullBox {
   display: flex;
   flex-direction: row;
@@ -106,7 +104,7 @@ $sidebarWidth: 360px;
     background-color: #f5f5f5;
     border-right: 0.5px solid #666666;
     padding: 0.5rem 1rem;
-    flex: 0 0 $sidebarWidth;
+    flex: 0 0 360px;
     align-self: stretch;
     overflow: auto;
   }
@@ -119,7 +117,7 @@ $sidebarWidth: 360px;
     flex-direction: column;
     flex-wrap: nowrap;
 
-    width: calc(100% - $sidebarWidth);
+    width: calc(100% - 360px);
 
     .toast {
       width: unset;
