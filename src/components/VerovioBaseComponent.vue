@@ -4,6 +4,8 @@
 
 <script>
 
+import indizes from './../searchIndizes.json'
+
 let unwatch
 let width
 let height
@@ -126,18 +128,23 @@ export default {
       svgContainer.innerHTML = svg
 
       let outerSVG = document.querySelector('#svgContainer > svg')
-      // outerSVG.addEventListener('mousedown',this.startSelectionRect)
-      outerSVG.addEventListener('mousemove',this.updateSelectionRect)
+      outerSVG.addEventListener('mousedown',this.startSelectionRect)
+      // outerSVG.addEventListener('mousemove',this.updateSelectionRect)
       // outerSVG.addEventListener('mouseup',this.finishSelectionRect)
-      outerSVG.addEventListener('click',this.handleSelectionRect)
+      // outerSVG.addEventListener('click',this.handleSelectionRect)
     },
-    /*startSelectionRect: function (e) {
+    startSelectionRect: function (e) {
 
       if (!this.$store.getters.searchSelectionActive) {
         return false
       }
 
       let outerSVG = document.querySelector('#svgContainer > svg')
+      // outerSVG.addEventListener('mousedown',this.startSelectionRect)
+      outerSVG.addEventListener('mousemove',this.updateSelectionRect)
+      outerSVG.addEventListener('mouseup',this.finishSelectionRect)
+
+      // let outerSVG = document.querySelector('#svgContainer > svg')
       let innerSVG = document.querySelector('#svgContainer svg svg')
       let clientRect = outerSVG.getClientRects()[0]
       let htmlWidth = clientRect.width
@@ -160,7 +167,7 @@ export default {
         circle.setAttributeNS(null,'cy',cy)
         circle.setAttributeNS(null,'r',100)
         circle.setAttributeNS(null,'fill','transparent')
-        circle.setAttributeNS(null,'stroke','red')
+        circle.setAttributeNS(null,'stroke','gray')
         circle.setAttributeNS(null,'stroke-width',60)
 
         innerSVG.appendChild(circle)
@@ -177,8 +184,8 @@ export default {
         rect.setAttributeNS(null,'y',cy)
         rect.setAttributeNS(null,'width',0)
         rect.setAttributeNS(null,'height',0)
-        rect.setAttributeNS(null,'fill','#ff000033')
-        rect.setAttributeNS(null,'stroke','red')
+        rect.setAttributeNS(null,'fill','#99999933')
+        rect.setAttributeNS(null,'stroke','gray')
         rect.setAttributeNS(null,'stroke-width',20)
 
         innerSVG.appendChild(rect)
@@ -188,11 +195,12 @@ export default {
         existingRect.setAttributeNS(null,'width',0)
         existingRect.setAttributeNS(null,'height',0)
       }
-      console.log('startSelectionRect: selectionStarted=' + selectionStarted + '->' + !selectionStarted)
+      // console.log('startSelectionRect: selectionStarted=' + selectionStarted + '->' + !selectionStarted)
       selectionStarted = !selectionStarted
 
-    },*/
+    },
     updateSelectionRect: function (e) {
+      // console.log('updateSelectionRect')
       if (!this.$store.getters.searchSelectionActive) {
         return false
       }
@@ -243,19 +251,27 @@ export default {
 
       this.getElementsByRect(outerSVG, existingRect)
     },
-    /*finishSelectionRect: function (e) {
+    finishSelectionRect: function (e) {
       if (!this.$store.getters.searchSelectionActive) {
         return false
       }
 
-      if (selectionStarted) {
+      // console.log('finishSelectionRect, started: ' + selectionStarted)
+
+      let outerSVG = document.querySelector('#svgContainer > svg')
+      // outerSVG.addEventListener('mousedown',this.startSelectionRect)
+      outerSVG.removeEventListener('mousemove',this.updateSelectionRect)
+      outerSVG.removeEventListener('mouseup',this.finishSelectionRect)
+
+      if (!selectionStarted) {
         // on first occurence, nothing should happen
         return false
       }
-      console.log('finishSelectionRect: selectionStarted=' + selectionStarted)
-      // selectionStarted = false
 
-      let outerSVG = document.querySelector('#svgContainer > svg')
+      // console.log('finishSelectionRect: selectionStarted=' + selectionStarted)
+      selectionStarted = false
+
+      // let outerSVG = document.querySelector('#svgContainer > svg')
       let innerSVG = document.querySelector('#svgContainer svg svg')
       let clientRect = outerSVG.getClientRects()[0]
       let htmlWidth = clientRect.width
@@ -290,18 +306,32 @@ export default {
         existingRect.setAttributeNS(null,'y',starty)
       }
 
-      existingRect.setAttributeNS(null,'width',width)
-      existingRect.setAttributeNS(null,'height',height)
+      // existingRect.setAttributeNS(null,'width',width)
+      // existingRect.setAttributeNS(null,'height',height)
+      let selectedIDs = this.getElementsByRect(outerSVG, existingRect)
+      console.log('The following ' + selectedIDs.length + ' notes have been selected:')
+      console.log(selectedIDs)
+      this.search(selectedIDs)
+
 
       existingCircle.remove()
-    },*/
-    handleSelectionRect: function (e) {
+      existingRect.remove()
 
+    },
+    handleSelectionRect: function (e) {
+      console.log('handleSelectionRect ' + selectionStarted)
       if (!this.$store.getters.searchSelectionActive) {
         return false
       }
 
-      let outerSVG = document.querySelector('#svgContainer > svg')
+      // as the mousedown event comes before the click, this is already changed!
+      if (selectionStarted) {
+        this.startSelectionRect(e)
+      } else {
+        this.finishSelectionRect(e)
+      }
+
+      /*let outerSVG = document.querySelector('#svgContainer > svg')
       let innerSVG = document.querySelector('#svgContainer svg svg')
       let clientRect = outerSVG.getClientRects()[0]
       let htmlWidth = clientRect.width
@@ -385,7 +415,7 @@ export default {
         this.getElementsByRect(outerSVG, existingRect)
       }
 
-      selectionStarted = !selectionStarted
+      selectionStarted = !selectionStarted*/
     },
     getElementsByRect: function (svg, rect) {
 
@@ -397,35 +427,69 @@ export default {
       // console.log(rect)
       // console.log('looking for events ' + x1 + '<=x<=' + x2 + ' and ' + y1 + '<=y<=' + y2)
 
-      let events = Array.from(svg.querySelectorAll('g.note, g.chord, g.rest'))
+      let events = Array.from(svg.querySelectorAll('g.note, g.chord, g.rest, g.mRest'))
       let affected = events.filter(event => {
         // if(event.classList.contains('note') || event.classList.contains('chord'))
-        let use = event.querySelector('use')
-        let usex = use.getAttribute('x')
-        let usey = use.getAttribute('y')
-        let fitsx = usex >= x1 && usex <= x2
-        let fitsy = usey >= y1 && usey <= y2
-        return fitsx && fitsy
+        if(event.classList.contains('mRest')) {
+          let rect = event.querySelector('rect')
+          let rx1 = parseInt(rect.getAttribute('x'))
+          let ry1 = parseInt(rect.getAttribute('y'))
+          let rx2 = rx1 + parseInt(rect.getAttribute('width'))
+          let ry2 = ry1 + parseInt(rect.getAttribute('height'))
+          let fitsx = rx1 >= x1 && rx1 <= x2
+          let fitsy = ry1 >= y1 && ry2 <= y2
+          if (fitsx && fitsy) {console.log('spotted mRest ' + event.id)}
+          return fitsx && fitsy
+        } else {
+          let use = event.querySelector('use')
+          let usex = use.getAttribute('x')
+          let usey = use.getAttribute('y')
+          let fitsx = usex >= x1 && usex <= x2
+          let fitsy = usey >= y1 && usey <= y2
+          return fitsx && fitsy
+        }
+
       })
 
       let previousSelection = Array.from(svg.querySelectorAll('g.selected'))
       let unselected = previousSelection.filter(event => {
-        let use = event.querySelector('use')
-        let usex = use.getAttribute('x')
-        let usey = use.getAttribute('y')
-        let fitsx = usex >= x1 && usex <= x2
-        let fitsy = usey >= y1 && usey <= y2
-        return !(fitsx && fitsy)
+        if(event.classList.contains('mRest')) {
+          let rect = event.querySelector('rect')
+          let rx1 = parseInt(rect.getAttribute('x'))
+          let ry1 = parseInt(rect.getAttribute('y'))
+          let rx2 = rx1 + parseInt(rect.getAttribute('width'))
+          let ry2 = ry1 + parseInt(rect.getAttribute('height'))
+          let fitsx = rx1 >= x1 && rx2 <= x2
+          let fitsy = ry1 >= y1 && ry2 <= y2
+          return !(fitsx && fitsy)
+        } else {
+          let use = event.querySelector('use')
+          let usex = use.getAttribute('x')
+          let usey = use.getAttribute('y')
+          let fitsx = usex >= x1 && usex <= x2
+          let fitsy = usey >= y1 && usey <= y2
+          return !(fitsx && fitsy)
+        }
       })
 
       let affectedIDs = []
 
       unselected.forEach((event,index) => {
+        try {
+          event.closest('g.staff').classList.remove('hasSelections')
+        } catch(err) {
+
+        }
         event.classList.remove('selected')
       })
       affected.forEach((event,index) => {
         affectedIDs.push(event.id)
         event.classList.add('selected')
+        try {
+          event.closest('g.staff').classList.add('hasSelections')
+        } catch(err) {
+
+        }
       })
 
       return affectedIDs
@@ -462,7 +526,45 @@ export default {
       } catch(err) {
           console.log('ERROR: Unable to redo Verovio layout: ' + err);
       }
+    },
+    search: function(ids) {
+      console.log('starting search')
+      let part = indizes.filter(part => part.full.ids.indexOf(ids[0]) !== -1)[0]
+      console.log(part)
+
+      let fullIndex = part.full.ids.indexOf(ids[0])
+      let rdomIndex = part.rdom.ids.indexOf(ids[0])
+      let norestIndex = part.norest.ids.indexOf(ids[0])
+      let rdomNoRestIndex = part.rdomNoRest.ids.indexOf(ids[0])
+      let tiesMergedIndex = part.tiesMerged.ids.indexOf(ids[0])
+      let tiesMergedNoRestIndex = part.tiesMergedNoRest.ids.indexOf(ids[0])
+
+      // retrieves all indizes for a given value
+      const getStartIndizes = (arr, iterator) => arr.reduce((iter, el, i) => {
+        //(el === val ? [...acc, i] : acc)
+
+        }, iterator);
+
+      console.log('fullIndex: ' + fullIndex)
+
+      let pitchContourArr = part.full.pitchContour.split('')
+      let pitchContour_query = pitchContourArr.slice(fullIndex,5)
+      let iterator = {}
+      iterator.query = pitchContour_query
+      iterator.currentValues = []
+      iterator.hits = []
+      iterator.i = 0
+
+      console.log(pitchContourArr)
+      console.log(pitchContour_query)
+
+      let full_pitchContour_hits = getStartIndizes(part.full.pitchContour,iterator)
+
+      console.log('found some hits: ')
+      console.log(full_pitchContour_hits)
+
     }
+
   },
   computed: {
     activeModeId: function () {
@@ -488,8 +590,69 @@ export default {
 </script>
 
 <style lang="scss">
-  svg g.selected, svg g.selected * {
-    fill: red;
-    stroke: red;
+
+  $selection1: #ff0000; /* red */
+  $selection2: #0000ff; /* blue */
+  $selection3: #228b22; /* forestgreen */
+  $selection4: #c71585; /* mediumvioletred */
+  $selection5: #ff8c00; /* darkorange */
+  $selection6: #006400; /* darkgreen */
+  $selection7: #b22222; /* firebrick */
+  $selection8: #4682b4; /* steelblue */
+
+  svg g.staff.hasSelections {
+    .selected, .selected * {
+      fill: $selection1;
+      stroke: $selection1;
+    }
+
+    & ~ g.staff.hasSelections {
+      .selected, .selected * {
+        fill: $selection2;
+        stroke: $selection2;
+      }
+
+      & ~ g.staff.hasSelections {
+        .selected, .selected * {
+          fill: $selection3;
+          stroke: $selection3;
+        }
+
+        & ~ g.staff.hasSelections {
+          .selected, .selected * {
+            fill: $selection4;
+            stroke: $selection4;
+          }
+
+          & ~ g.staff.hasSelections {
+            .selected, .selected * {
+              fill: $selection5;
+              stroke: $selection5;
+            }
+
+            & ~ g.staff.hasSelections {
+              .selected, .selected * {
+                fill: $selection6;
+                stroke: $selection6;
+              }
+
+              & ~ g.staff.hasSelections {
+                .selected, .selected * {
+                  fill: $selection7;
+                  stroke: $selection7;
+                }
+
+                & ~ g.staff.hasSelections {
+                  .selected, .selected * {
+                    fill: $selection8;
+                    stroke: $selection8;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 </style>

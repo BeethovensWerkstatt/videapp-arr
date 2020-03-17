@@ -11,7 +11,7 @@
       </section>
 
       <section class="navbar-section">
-          <!--<SearchButton v-if="modeObj.options.search"/>-->
+          <SearchButton v-if="modeObj.options.search"/>
       </section>
     </div>
 </template>

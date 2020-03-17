@@ -1,6 +1,7 @@
 <template>
   <div id="analysis">
     <SunburstPane v-if="sunburstVisible"/>
+    <GotoMeasurePane v-if="gotoMeasureVisible"/>
     <AnalysisPlain v-if="activeModeId === 'plain'"/>
     <AnalysisComparison v-if="activeModeId === 'eventComparison'"/>
     <AnalysisGenetic v-if="activeModeId === 'geneticComparison'"/>
@@ -19,6 +20,7 @@ import AnalysisMelodic from '@/components/AnalysisMelodic.vue'
 import AnalysisDensity from '@/components/AnalysisDensity.vue'
 import AnalysisHarmonic from '@/components/AnalysisHarmonic.vue'
 import SunburstPane from '@/components/SunburstPane.vue'
+import GotoMeasurePane from '@/components/GotoMeasurePane.vue'
 
 export default {
   name: 'Analysis',
@@ -29,7 +31,8 @@ export default {
     AnalysisMelodic,
     AnalysisDensity,
     AnalysisHarmonic,
-    SunburstPane
+    SunburstPane,
+    GotoMeasurePane
   },
   computed: {
     activeModeId: function() {
@@ -37,6 +40,9 @@ export default {
     },
     sunburstVisible: function() {
       return this.$store.getters.sunburstVisible
+    },
+    gotoMeasureVisible: function() {
+      return this.$store.getters.gotoMeasureVisible
     }
   }
 }
