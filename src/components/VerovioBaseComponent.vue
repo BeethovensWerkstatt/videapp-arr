@@ -528,9 +528,10 @@ export default {
       }
     },
     search: function(ids) {
-      console.log('starting search')
+      // console.log('starting search for ' + ids[0])
       let part = indizes.filter(part => part.full.ids.indexOf(ids[0]) !== -1)[0]
-      console.log(part)
+      // console.log(indizes)
+      // console.log(part)
 
       let fullIndex = part.full.ids.indexOf(ids[0])
       let rdomIndex = part.rdom.ids.indexOf(ids[0])
@@ -540,25 +541,54 @@ export default {
       let tiesMergedNoRestIndex = part.tiesMergedNoRest.ids.indexOf(ids[0])
 
       // retrieves all indizes for a given value
-      const getStartIndizes = (arr, iterator) => arr.reduce((iter, el, i) => {
+      const getStartIndizes = (arr, iterator) => {
+
+        let results = arr.reduce((iter, el, i) => {
+
+        // here, I need to do the actual comparison
         //(el === val ? [...acc, i] : acc)
 
-        }, iterator);
+        if (i === 0) {
 
-      console.log('fullIndex: ' + fullIndex)
+        }
+
+        let n = 0;
+        let val = 0;
+        for (n; n < iter.query.length; n++) {
+
+          // determine distance in here
+          if (arr[i + n] === iter.query[n]) {
+            val += 1
+          }
+        }
+        val = val / iter.query.length
+
+        // set tolerable distance
+        if(val > 0.8) {
+          iter.hits.push({pos: i, value: val})
+        }
+
+        return iter
+
+        }, iterator)
+
+        return results
+      };
 
       let pitchContourArr = part.full.pitchContour.split('')
-      let pitchContour_query = pitchContourArr.slice(fullIndex,5)
+      let pitchContour_query = pitchContourArr.slice(fullIndex,fullIndex + ids.length)
       let iterator = {}
       iterator.query = pitchContour_query
-      iterator.currentValues = []
       iterator.hits = []
       iterator.i = 0
 
-      console.log(pitchContourArr)
+      // console.log(pitchContourArr)
+      console.log('searching these IDs:')
+      console.log(ids)
       console.log(pitchContour_query)
 
-      let full_pitchContour_hits = getStartIndizes(part.full.pitchContour,iterator)
+      // todo: search in all parts
+      let full_pitchContour_hits = getStartIndizes(pitchContourArr,iterator)
 
       console.log('found some hits: ')
       console.log(full_pitchContour_hits)
