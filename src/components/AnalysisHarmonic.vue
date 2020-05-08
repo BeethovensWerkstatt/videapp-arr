@@ -22,6 +22,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-
+  svg .anl.diff, svg .anl.diff * {
+    font-weight: bold;
+    fill: #f62727;
+    stroke: #f62727;
+  }
 
 </style>

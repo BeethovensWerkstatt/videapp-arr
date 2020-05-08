@@ -93,7 +93,7 @@
       "legend":false,
       "search":true
     },
-    "internalBeta": true
+    "internalBeta": false
   },
   "eventDensity": {
     "id":"eventDensity",
