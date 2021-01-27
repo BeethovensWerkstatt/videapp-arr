@@ -8,8 +8,8 @@
       "en":"Score Synopsis"
     },
     "glossary":{
-      "de":"",
-      "en":""
+      "de":"https://beethovens-werkstatt.de/glossary/fassungssynopse/",
+      "en":"https://beethovens-werkstatt.de/glossary/fassungssynopse/"
     },
     "options":{
       "sunburst":true,
@@ -32,8 +32,8 @@
       "en":"Genetic Comparison"
     },
     "glossary":{
-      "de":"",
-      "en":""
+      "de":"https://beethovens-werkstatt.de/glossary/bearbeitungsmassnahmen/",
+      "en":"https://beethovens-werkstatt.de/glossary/bearbeitungsmassnahmen/"
     },
     "options":{
       "sunburst":true,
@@ -56,8 +56,8 @@
       "en":"Single Note Comparison"
     },
     "glossary":{
-      "de":"",
-      "en":""
+      "de":"https://beethovens-werkstatt.de/glossary/einzelnotenvergleich/",
+      "en":"https://beethovens-werkstatt.de/glossary/einzelnotenvergleich/"
     },
     "options":{
       "sunburst":true,
@@ -80,8 +80,8 @@
       "en":"Harmonic Comparison"
     },
     "glossary":{
-      "de":"",
-      "en":""
+      "de":"https://beethovens-werkstatt.de/glossary/harmonievergleich/",
+      "en":"https://beethovens-werkstatt.de/glossary/harmonievergleich/"
     },
     "options":{
       "sunburst":true,
@@ -104,8 +104,8 @@
       "en":"Event Density"
     },
     "glossary":{
-      "de":"",
-      "en":""
+      "de":"https://beethovens-werkstatt.de/glossary/ereignisdichte/",
+      "en":"https://beethovens-werkstatt.de/glossary/ereignisdichte/"
     },
     "options":{
       "sunburst":true,
@@ -128,8 +128,8 @@
       "en":"Melodic Comparison"
     },
     "glossary":{
-      "de":"",
-      "en":""
+      "de":"https://beethovens-werkstatt.de/glossary/stimmenkontur/",
+      "en":"https://beethovens-werkstatt.de/glossary/stimmenkontur/"
     },
     "options":{
       "sunburst":false,
