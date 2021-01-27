@@ -19,7 +19,7 @@
           <div class="toast">
             <h1>Herzlich willkommen bei der VideApp<sub>Arrangements</sub></h1>
             <p>Dieses Werkzeug ermöglicht Ihnen Vergleiche von Fassungen desselben Werks unter verschiedenen Perspektiven. So gewinnen Sie detaillierte Einblicke in Beethovens Bearbeitungstechniken. Die dabei behandelten Werke in ihren unterschiedlichen Versionen finden Sie anwählbar im Menü links aufgelistet.</p>
-            <p>Das Werkzeug ist gegenwärtig noch in Entwicklung, daher sind noch nicht alle vorgesehenen Aspekte (darunter auch ausführliche Anleitungen und Dokumentationen) umgesetzt. Gerne nehmen wir Ihre Anregungen unter <a href="mailto:info@beethovens-werkstatt.de">info@beethovens-werkstatt.de</a> entgegen.</p>
+            <p>Eine Kurzbeschreibung zu dem jeweiligen Fassungsvergleich finden Sie unter dem Informations-Icon. Dort finden Sie auch einen Link zu einer ausführlicheren Beschreibung. Die VideApp<sub>Arr</sub> ist Bestandteil des 2. Moduls des Projekts, vgl. die <a href="https://beethovens-werkstatt.de/modul-2/" target=_blank>Übersicht zu Modul 2</a>. Rückmeldungen nehmen wir gerne unter <a href="mailto:info@beethovens-werkstatt.de">info@beethovens-werkstatt.de</a> entgegen.</p>
             <p>Wählen Sie jetzt bitte einen Fassungsvergleich auf der linken Seite aus.</p>
           </div>
         </div>
