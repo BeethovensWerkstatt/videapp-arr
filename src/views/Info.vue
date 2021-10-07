@@ -16,7 +16,7 @@
             Vergleich der musikalischen Texte von Vorlagen und Arrangements untersucht.
             <br/>
             Was Sie hier sehen, ist ein ungeschützter Blick in unsere Werkstatt. Weder die Daten oder die Software noch die Konzepte, die darin umgesetzt werden, entsprechen
-            unseren Zielvorstellungen für eine Umsetzung in diesem Modul. Es ist nur ein Aspekt, den wir gerne ausprobieren würden. Natürlich freuen wir uns über <a href="mailto:info@beethovens-werkstatt.de">Feedback</a>,
+            unseren Zielvorstellungen für eine Umsetzung in diesem Modul. Es ist nur ein Aspekt, den wir gerne ausprobieren würden. Natürlich freuen wir uns über Feedback,
             mit dem wir unterschiedliche Ansätze evaluieren können.
         </div>
     </div>

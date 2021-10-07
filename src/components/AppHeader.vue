@@ -11,7 +11,7 @@
       </section>
       <section class="navbar-section">
           <div id="noteID"></div>
-          <a id="githubLogo" href="https://github.com/BeethovensWerkstatt/videapp-arr" target="_blank" class="btn btn-link">GitHub</a>
+          <!--<a id="githubLogo" href="https://github.com/BeethovensWerkstatt/videapp-arr" target="_blank" class="btn btn-link">GitHub</a>-->
       </section>
   </header>
 </template>
@@ -58,7 +58,7 @@ export default {
 
       #noteID {
           margin-right: 1em;
-          opacity: .6;
+          opacity: .1;
           font-size: .7em;
           font-weight: 100;
           text-align: left;
