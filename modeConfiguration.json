@@ -19,7 +19,7 @@
       "scoreDef":true,
       "coloring":true,
       "legend":false,
-      "search":true
+      "search":false
     },
     "internalBeta": false
   },
@@ -43,7 +43,7 @@
       "scoreDef":true,
       "coloring":false,
       "legend":true,
-      "search":true
+      "search":false
     },
     "internalBeta": false
   },
@@ -67,7 +67,7 @@
       "scoreDef":true,
       "coloring":false,
       "legend":true,
-      "search":true
+      "search":false
     },
     "internalBeta": false
   },
@@ -91,7 +91,7 @@
       "scoreDef":true,
       "coloring":false,
       "legend":false,
-      "search":true
+      "search":false
     },
     "internalBeta": false
   },
@@ -115,7 +115,7 @@
       "scoreDef":true,
       "coloring":false,
       "legend":false,
-      "search":true
+      "search":false
     },
     "internalBeta": false
   },
