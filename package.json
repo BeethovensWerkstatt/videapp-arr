@@ -64,7 +64,7 @@
     "gulp-newer": "^1.4.0",
     "gulp-replace": "^1.0.0",
     "gulp-zip": "^4.2.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
