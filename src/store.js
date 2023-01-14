@@ -3,13 +3,13 @@ import Vuex from 'vuex'
 
 import modeConfiguration from './../modeConfiguration.json'
 
-const environment = 'live' // 'local' or 'live'
+const environment = 'live' // 'live' // 'local' or 'live'
 
 // const api = process.env.VUE_APP_DATA_BACKEND_URL
-// const api = 'https://dev.beethovens-werkstatt.de/'
+// const api = 'https://api.beethovens-werkstatt.de/'
 // const api = 'http://localhost:8080/exist/apps/bw-module2/'
 
-const api = (environment === 'local') ? 'http://localhost:8080/exist/apps/bw-module2/' : 'https://dev.beethovens-werkstatt.de/'
+const api = (environment === 'local') ? 'http://localhost:8080/exist/apps/api/' : 'https://api.beethovens-werkstatt.de/'
 const verovioMaxZoom = 200
 const verovioMinZoom = 10
 
@@ -25,7 +25,7 @@ const buildRequest = (comparison, methodLink, mdiv, transpose) => {
 }
 
 const buildIntroRequest = (id) => {
-  return 'data/' + id + '/intro.html'
+  return 'module2/' + id + '/intro.html'
 }
 
 Vue.use(Vuex)
@@ -313,7 +313,7 @@ export default new Vuex.Store({
     },
     fetchComparisons ({ commit }) {
       return new Promise(resolve => {
-        let request = 'resources/xql/getComparisonListing.xql'
+        let request = 'module2/comparisons.json'
         commit('START_LOADING', request)
         fetch(api + request)
           .then(response => {
@@ -359,6 +359,9 @@ export default new Vuex.Store({
           // resource needs to be loaded
           // console.log('// resource needs to be loaded')
           commit('START_LOADING', request)
+
+          console.log('starting to fetch MEI data (api: ' + api + ' | request: ' + request + ')')
+
           fetch(api + request)
             .then(response => {
               if (!response.ok) {
@@ -721,7 +724,7 @@ export default new Vuex.Store({
     currentlyLoading: state => {
       if (state.loading.length === 0) {
         return null
-      } else if ((state.activeComparison === null || state.activeMode === null) && state.loading[0] === 'resources/xql/getComparisonListing.xql') {
+      } else if ((state.activeComparison === null || state.activeMode === null) && state.loading[0] === 'module2/comparisons.json') {
         return 'loading data'
       } else if (state.activeComparison !== null && typeof state.comparisons[state.activeComparison] !== 'undefined') {
         // let comp = state.comparisons[state.activeComparison]

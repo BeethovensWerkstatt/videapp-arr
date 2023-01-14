@@ -3,7 +3,7 @@
 # 1. set up the build environment and build the expath-package
 # 2. run the eXist-db
 #########################
-FROM node:8 as builder
+FROM node:14 as builder
 
 WORKDIR /app
 
