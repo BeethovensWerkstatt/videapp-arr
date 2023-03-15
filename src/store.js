@@ -21,7 +21,7 @@ const buildRequest = (comparison, methodLink, mdiv, transpose) => {
 
   let staffParam = (disabledStavesWork1.length > 0 || disabledStavesWork2.length > 0) ? ('?hideStaves=' + disabledStavesWork1.join() + '-' + disabledStavesWork2.join()) : ''
   // return 'resources/xql/getAnalysis.xql?comparisonId=' + comparison + '&method=' + method + '&mdiv=' + mdiv + '&transpose=' + transpose
-  return 'data/' + comparison + '/mdiv/' + mdiv.n + '/transpose/' + transpose + '/' + methodLink + '.xml' + staffParam
+  return 'module2/data/' + comparison + '/mdiv/' + mdiv.n + '/transpose/' + transpose + '/' + methodLink + '.xml' + staffParam
 }
 
 const buildIntroRequest = (id) => {
